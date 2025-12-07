@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringkasan Materi PSAS Inggris Kelas 9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .content-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 text-slate-800">
+
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col relative border border-gray-200 h-[600px] md:h-[500px]">
+        
+        <div class="bg-[#27B6C1] w-full h-2 shrink-0"></div>
+
+        <div id="slide-container" class="flex-1 p-6 sm:p-8 flex flex-col overflow-y-auto content-scroll relative">
+        </div>
+
+        <div class="bg-gray-100 p-4 border-t flex justify-between items-center shrink-0 z-10">
+            <button id="prev-btn" onclick="changeSlide(-1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-white text-[#27B6C1] shadow hover:bg-[#27B6C1]/10 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <span class="hidden sm:inline">Sebelumnya</span>
+            </button>
+
+            <span id="slide-counter" class="text-sm font-bold text-gray-500">
+                Slide 1 / 9
+            </span>
+
+            <button id="next-btn" onclick="changeSlide(1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-[#27B6C1] text-white shadow hover:bg-[#1f919a] disabled:opacity-50 disabled:cursor-not-allowed">
+                <span class="hidden sm:inline">Selanjutnya</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+
+        <div class="w-full bg-gray-200 h-1 shrink-0">
+            <div id="progress-bar" class="bg-[#27B6C1] h-1 transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+    </div>
+
+    <p class="mt-4 text-xs text-gray-400">Gunakan tombol panah Kiri/Kanan di keyboard untuk navigasi.</p>
+    <p class="mt-4 text-xs text-gray-400">Dibuat oleh MAH.</p>
+
+    <script>
+        const slides = [
+            {
+                type: "intro",
+                title: "Rangkuman Materi PSAS Inggris",
+                subtitle: "Kelas 9 - Brain Academy by Ruangguru",
+                iconColor: "text-[#27B6C1]",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+                content: [
+                    "Persiapan Ujian Semester Ganjil 2025",
+                    "Mencakup: Grammar, Teks Fungsional, dan Writing",
+                    "Total Soal: 25 PG, 5 T/F, 5 Isian, 5 Essay"
+                ]
+            },
+            {
+                type: "content",
+                title: "1. Have vs Has (Simple Present)",
+                iconColor: "text-green-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+                explanation: "Digunakan untuk menunjukkan kepemilikan (possession) atau kewajiban.",
+                rules: [
+                    { label: "HAVE", text: "I, You, They, We" },
+                    { label: "HAS", text: "He, She, It, Nama Tunggal (Andi)" }
+                ],
+                example: {
+                    q: "She ______ a new bicycle.",
+                    a: "Has (Karena subjeknya She)"
+                }
+            },
+            {
+                type: "content",
+                title: "2. Passive Voice (Kalimat Pasif)",
+                iconColor: "text-purple-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+                explanation: "Fokus pada objek yang dikenai tindakan. Subjek menjadi penerima aksi.",
+                rules: [
+                    { label: "RUMUS", text: "Subject + To Be (is/am/are/was/were) + Verb 3" }
+                ],
+                example: {
+                    active: "My mother cooks fried rice.",
+                    passive: "Fried rice is cooked by my mother."
+                }
+            },
+            {
+                type: "content",
+                title: "3. Report Text",
+                iconColor: "text-orange-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+                explanation: "Teks yang menjelaskan sesuatu secara umum berdasarkan fakta ilmiah.",
+                rules: [
+                    { label: "GENERIC STRUCTURE", text: "1. General Classification (Definisi/Klasifikasi umum), 2. Description (Deskripsi bagian/sifat)" },
+                    { label: "CIRI 1", text: "Menggunakan Simple Present Tense (General Truth)" },
+                    { label: "CIRI 2", text: "Objek bersifat umum (e.g., 'Elephants', bukan 'My Elephant')" },
+                    { label: "TUJUAN", text: "Menyampaikan informasi faktual apa adanya." }
+                ],
+                example: {
+                    topic: "Contoh Topik: 'Elephants', 'Tsunami', 'Mobile Phones'."
+                }
+            },
+            {
+                type: "content",
+                title: "4. Simple Past Tense",
+                iconColor: "text-red-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+                explanation: "Menyatakan kejadian yang sudah selesai di masa lampau.",
+                rules: [
+                    { label: "VERBAL", text: "Subject + Verb 2 (went, ate, studied)" },
+                    { label: "NOMINAL", text: "Subject + Was/Were + Adjective/Noun" },
+                    { label: "WAKTU", text: "Yesterday, last week, in 2010" }
+                ],
+                example: {
+                    q: "I _____ to Bali last year.",
+                    a: "Went (V2 dari Go)"
+                }
+            },
+            {
+                type: "content",
+                title: "5. Recount Text",
+                iconColor: "text-teal-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+                explanation: "Menceritakan kembali pengalaman masa lalu (Retelling past events).",
+                rules: [
+                    { label: "STRUKTUR 1", text: "Orientation (Siapa, kapan, di mana)" },
+                    { label: "STRUKTUR 2", text: "Events (Urutan kejadian kronologis)" },
+                    { label: "STRUKTUR 3", text: "Re-orientation (Kesimpulan/Perasaan)" }
+                ],
+                example: {
+                    topic: "Topik Umum: 'My Holiday', 'Unforgettable Moment'."
+                }
+            },
+            {
+                type: "content",
+                title: "6. Direct & Indirect Speech",
+                iconColor: "text-pink-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+                explanation: "Melaporkan ucapan orang lain (Kalimat Langsung ke Tidak Langsung).",
+                rules: [
+                    { label: "PRINSIP", text: "Tenses biasanya mundur satu langkah (Present -> Past)" },
+                    { label: "TO-BE", text: "Am/Is -> Was, Are -> Were" },
+                    { label: "MODAL", text: "Will -> Would, Can -> Could" }
+                ],
+                example: {
+                    direct: 'Andi said, "I am hungry."',
+                    indirect: 'Andi said that he was hungry.'
+                }
+            },
+            {
+                type: "content",
+                title: "7. Connectors (Kata Hubung)",
+                iconColor: "text-yellow-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+                explanation: "Kata hubung untuk merangkai urutan kejadian di masa lampau.",
+                rules: [
+                    { label: "WHEN / WHILE", text: "Kejadian berpotongan (When + V2, While + Was/Were V-ing)" },
+                    { label: "BEFORE / AFTER", text: "Urutan waktu (Sebelum / Sesudah)" },
+                    { label: "AS SOON AS", text: "Segera setelah (Aksi langsung menyusul aksi lain)" },
+                    { label: "ONCE", text: "Setelah / Ketika (Menandakan satu aksi tuntas)" }
+                ],
+                example: {
+                    ex1: "Call me AS SOON AS you arrive.",
+                    ex2: "ONCE he finished eating, he went to sleep."
+                }
+            },
+            {
+                type: "summary",
+                title: "Tips Khusus Essay",
+                iconColor: "text-indigo-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+                content: [
+                    "1. Hafalkan rumus Passive Voice (Tobe + V3).",
+                    "2. Pahami ciri-ciri Report Text (General Noun, Present Tense).",
+                    "3. Latihan menulis cerita pendek liburan (Recount Text).",
+                    "4. Perhatikan perubahan Tobe pada Direct -> Indirect Speech."
+                ]
+            },
+            {
+                type: "intro",
+                title: "Latihan Soal Essay",
+                subtitle: "Siapkan kertas, coba kerjakan sebelum melihat jawaban!",
+                iconColor: "text-red-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+                content: [
+                    "Bagian ini berisi 5 soal prediksi Essay.",
+                    "Tekan 'Selanjutnya' untuk mulai latihan."
+                ]
+            },
+            {
+                type: "content",
+                title: "Latihan 1: Passive Voice",
+                iconColor: "text-purple-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+                explanation: "Ubah kalimat berikut menjadi Passive Voice!",
+                example: {
+                    active: "The students sweep the classroom every morning.",
+                    passive: "The classroom IS SWEPT by the students every morning."
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 2: Report Text",
+                iconColor: "text-orange-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+                explanation: "Jawablah pertanyaan terkait ciri-ciri Report Text berikut.",
+                example: {
+                    q: "Sebutkan 2 Generic Structure dari Report Text!",
+                    a: "1. General Classification, 2. Description"
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 3: Connectors",
+                iconColor: "text-yellow-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+                explanation: "Gabungkan dua kalimat ini menggunakan kata hubung 'BEFORE'.",
+                example: {
+                    q: "1. He washed his hands. 2. He ate dinner.",
+                    a: "He washed his hands BEFORE he ate dinner."
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 4: Recount Text",
+                iconColor: "text-teal-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+                explanation: "Contoh Recount Text lengkap dengan struktur: Orientation, Events, & Re-orientation.",
+                example: {
+                    q: "Topic: My Camping Trip",
+                    a: "<b>(Orientation)</b> Last weekend, my friends and I went camping. <br><b>(Events)</b> First, we set up the tent. Then, we made a campfire and sang songs. <br><b>(Re-orientation)</b> We felt very happy and relaxed."
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 5: Direct & Indirect",
+                iconColor: "text-pink-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+                explanation: "Ubah kalimat Direct Speech ini menjadi Indirect Speech.",
+                example: {
+                    direct: 'Rina said, "I am sad today."',
+                    indirect: 'Rina said that she was sad that day.'
+                }
+            }
+        ];
+
+        let currentSlide = 0;
+
+        function renderSlide() {
+            const container = document.getElementById('slide-container');
+            const data = slides[currentSlide];
+            
+            container.innerHTML = '';
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col h-full fade-in';
+            
+            const header = document.createElement('div');
+            header.className = 'flex items-center gap-4 mb-6 border-b pb-4 shrink-0';
+            
+            const iconDiv = document.createElement('div');
+            if (currentSlide === 0) {
+                 iconDiv.className = `p-3 rounded-full bg-[#27B6C1]/10 ${data.iconColor}`;
+            } else {
+                 iconDiv.className = `p-3 bg-blue-50 rounded-full ${data.iconColor}`;
+            }
+            iconDiv.innerHTML = data.iconSvg;
+            
+            const titleDiv = document.createElement('div');
+            titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 leading-tight">${data.title}</h2>`;
+            if (data.subtitle) {
+                titleDiv.innerHTML += `<p class="text-gray-500">${data.subtitle}</p>`;
+            }
+
+            header.appendChild(iconDiv);
+            header.appendChild(titleDiv);
+            wrapper.appendChild(header);
+
+            const bodyDiv = document.createElement('div');
+            bodyDiv.className = 'flex-1 space-y-4';
+
+            if (data.type === 'intro') {
+                const list = document.createElement('div');
+                list.className = 'space-y-4 mt-4';
+                data.content.forEach(text => {
+                    const item = document.createElement('div');
+                    item.className = 'flex items-center gap-3 bg-[#27B6C1]/10 p-4 rounded-lg';
+                    item.innerHTML = `<div class="w-2 h-2 rounded-full bg-[#27B6C1] shrink-0"></div><p class="text-lg text-gray-700 font-medium">${text}</p>`;
+                    list.appendChild(item);
+                });
+                bodyDiv.appendChild(list);
+            } 
+            else if (data.type === 'summary') {
+                const list = document.createElement('div');
+                list.className = 'space-y-3 mt-2';
+                data.content.forEach(text => {
+                    const item = document.createElement('div');
+                    item.className = 'p-4 bg-indigo-50 border border-indigo-100 rounded-lg text-indigo-900 font-medium shadow-sm';
+                    item.textContent = text;
+                    list.appendChild(item);
+                });
+                bodyDiv.appendChild(list);
+            }
+            else if (data.type === 'content') {
+                if (data.explanation) {
+                    const exp = document.createElement('div');
+                    exp.className = 'bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-4';
+                    exp.innerHTML = `<p class="text-gray-700 italic">${data.explanation}</p>`;
+                    bodyDiv.appendChild(exp);
+                }
+
+                if (data.rules) {
+                    const rulesGrid = document.createElement('div');
+                    rulesGrid.className = 'grid gap-3';
+                    data.rules.forEach(rule => {
+                        const ruleDiv = document.createElement('div');
+                        ruleDiv.className = 'flex flex-col sm:flex-row sm:items-center bg-gray-50 p-3 rounded hover:bg-gray-100 transition-colors gap-2 sm:gap-4';
+                        ruleDiv.innerHTML = `<span class="font-bold text-blue-700 min-w-[100px] uppercase text-sm tracking-wide mb-1 sm:mb-0">${rule.label}</span><span class="text-gray-700">${rule.text}</span>`;
+                        rulesGrid.appendChild(ruleDiv);
+                    });
+                    bodyDiv.appendChild(rulesGrid);
+                }
+
+                if (data.example) {
+                    const exBox = document.createElement('div');
+                    exBox.className = 'mt-6 bg-slate-800 text-white p-4 rounded-lg shadow-inner';
+                    exBox.innerHTML = `<p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>`;
+                    
+                    let exContent = '';
+                    if (data.example.q) {
+                        exContent = `<p class="font-mono text-lg mb-1">${data.example.q}</p><p class="text-green-400 text-sm">➜ ${data.example.a}</p>`;
+                    } else if (data.example.active) {
+                        exContent = `<div class="space-y-2"><p><span class="text-red-300 font-bold">Aktif:</span> ${data.example.active}</p><p><span class="text-green-300 font-bold">Pasif:</span> ${data.example.passive}</p></div>`;
+                    } else if (data.example.topic) {
+                        exContent = `<p>${data.example.topic}</p>`;
+                    } else if (data.example.direct) {
+                        exContent = `<div class="space-y-2"><p><span class="text-red-300 font-bold">Direct:</span> ${data.example.direct}</p><p><span class="text-green-300 font-bold">Indirect:</span> ${data.example.indirect}</p></div>`;
+                    } else if (data.example.ex1) {
+                         exContent = `<div class="space-y-2 italic"><p>1. ${data.example.ex1}</p><p>2. ${data.example.ex2}</p></div>`;
+                    }
+                    exBox.innerHTML += exContent;
+                    bodyDiv.appendChild(exBox);
+                }
+            }
+
+            wrapper.appendChild(bodyDiv);
+            container.appendChild(wrapper);
+
+            updateControls();
+        }
+
+        function updateControls() {
+            document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+            
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+        }
+
+        function changeSlide(direction) {
+            const newIndex = currentSlide + direction;
+            if (newIndex >= 0 && newIndex < slides.length) {
+                currentSlide = newIndex;
+                renderSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        renderSlide();
+
+    </script>
+</body>
+</html>
