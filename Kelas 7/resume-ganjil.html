@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Kelas 7 Ganjil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2327B6C1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/><path d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/></svg>">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Noto Sans', 'sans-serif'] },
+                    colors: { brand: { light: '#27B6C1', dark: '#13636A' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans', sans-serif; }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .content-scroll::-webkit-scrollbar { width: 6px; }
+        .content-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+        .dark .content-scroll::-webkit-scrollbar-thumb { background-color: #475569; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 text-slate-800 bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
+
+    <div class="w-full max-w-2xl bg-white dark:bg-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col relative border border-gray-200 dark:border-slate-700 h-[600px]">
+        
+        <div class="bg-brand-light w-full h-2 shrink-0"></div>
+        
+        <div class="absolute top-4 right-4 z-20">
+             <a href="index.html" class="text-xs font-bold text-gray-400 hover:text-brand-light dark:hover:text-brand-light flex items-center gap-1 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                KEMBALI
+            </a>
+        </div>
+
+        <div id="slide-container" class="flex-1 p-8 flex flex-col overflow-y-auto content-scroll relative"></div>
+
+        <div class="bg-gray-100 dark:bg-slate-900 p-4 border-t dark:border-slate-700 flex justify-between items-center shrink-0">
+            <button id="prev-btn" onclick="changeSlide(-1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-white dark:bg-slate-800 text-brand-light dark:text-brand-light shadow hover:bg-brand-light/10 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none border border-transparent dark:border-slate-700">
+                Sebelumnya
+            </button>
+            <span id="slide-counter" class="text-sm font-bold text-gray-500 dark:text-gray-400">Slide 1</span>
+            <button id="next-btn" onclick="changeSlide(1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-brand-light text-white shadow hover:bg-brand-dark disabled:opacity-50 disabled:cursor-not-allowed">
+                Selanjutnya
+            </button>
+        </div>
+        <div class="w-full bg-gray-200 dark:bg-slate-700 h-1 shrink-0"><div id="progress-bar" class="bg-brand-light h-1 transition-all duration-300" style="width: 0%"></div></div>
+    </div>
+
+    <p class="mt-4 text-xs text-gray-400">Gunakan tombol panah Kiri/Kanan di keyboard untuk navigasi.</p>
+    <p class="mt-4 text-xs text-gray-400">&copy; 2025 English Learning Hub by MAH.</p>
+
+    <button onclick="toggleDarkMode()" class="mt-2 text-xs px-3 py-1 rounded-full bg-gray-200 dark:bg-slate-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-slate-700 transition-colors">
+        Ubah Mode (Terang/Gelap)
+    </button>
+
+    <script>
+        const slides = [
+            {
+                type: "intro", title: "Bahasa Inggris Kelas 7", subtitle: "Semester Ganjil",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+                content: ["Greetings & Partings", "Introduction & To Be", "Gratitude & Apology", "Commands & Prohibitions", "Present Continuous & Adjectives"]
+            },
+            {
+                type: "content", title: "1. Greetings & Partings",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+                explanation: "Ungkapan salam saat bertemu dan berpisah.",
+                rules: [
+                    { label: "GREETINGS", text: "Good morning (Pagi), Good afternoon (Siang), How are you?" },
+                    { label: "PARTINGS", text: "Good bye, See you later, Good night (Salam tidur/pisah malam)" }
+                ],
+                example: { q: "A: How do you do?", a: "B: How do you do? (Khusus perkenalan pertama)" }
+            },
+            {
+                type: "content", title: "2. Introduction & To Be",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+                explanation: "Memperkenalkan diri dan penggunaan 'To Be' (am, is, are).",
+                rules: [
+                    { label: "SELF", text: "My name is..., I am..." },
+                    { label: "OTHERS", text: "This is my friend..., Let me introduce..." },
+                    { label: "TO BE", text: "I (am) | He, She, It (is) | You, They, We (are)" }
+                ],
+                example: { q: "She _____ a student.", a: "IS (She is a student)" }
+            },
+            {
+                type: "content", title: "3. Gratitude & Apology",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>`,
+                explanation: "Berterima kasih dan meminta maaf.",
+                rules: [
+                    { label: "GRATITUDE", text: "Thank you, Thanks a lot. (Response: You're welcome)" },
+                    { label: "APOLOGY", text: "I am sorry, Forgive me. (Response: Never mind, It's okay)" }
+                ]
+            },
+            {
+                type: "content", title: "4. Asking Information & There is/are",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+                explanation: "Menanyakan info dan menyatakan keberadaan benda.",
+                rules: [
+                    { label: "THERE IS", text: "Untuk benda TUNGGAL (Singular). e.g., There is a book." },
+                    { label: "THERE ARE", text: "Untuk benda JAMAK (Plural). e.g., There are two cats." }
+                ],
+                example: { q: "_____ five apples on the table.", a: "There ARE (Karena jamak/banyak)" }
+            },
+            {
+                type: "content", title: "5. Commands & Prohibition",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>`,
+                explanation: "Memberi perintah dan larangan.",
+                rules: [
+                    { label: "COMMAND", text: "Verb 1 + Object! (Open the door!, Listen to me!)" },
+                    { label: "PROHIBITION", text: "Don't + Verb 1! (Don't close the book!, Don't be noisy!)" }
+                ]
+            },
+            {
+                type: "content", title: "6. Present Continuous Tense",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+                explanation: "Menyatakan kejadian yang SEDANG berlangsung sekarang.",
+                rules: [
+                    { label: "RUMUS", text: "Subject + To Be (am/is/are) + Verb-ing" },
+                    { label: "TIME", text: "Now, Right now, At the moment" }
+                ],
+                example: { q: "We _____ football now.", a: "Are playing (We are playing)" }
+            },
+            {
+                type: "content", title: "7. Adjectives (Kata Sifat)",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+                explanation: "Kata yang menjelaskan benda (Noun).",
+                rules: [
+                    { label: "CONTOH", text: "Big, Small, Smart, Beautiful, Happy, Sad" },
+                    { label: "POSISI", text: "Sebelum Noun (Smart student) atau setelah To Be (She is smart)" }
+                ]
+            }
+        ];
+
+        let currentSlide = 0;
+        function renderSlide() {
+            const container = document.getElementById('slide-container');
+            const data = slides[currentSlide];
+            container.innerHTML = '';
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col h-full fade-in space-y-4';
+            
+            // Header
+            const header = document.createElement('div');
+            header.className = 'flex items-center gap-4 mb-6 border-b dark:border-slate-700 pb-4 shrink-0';
+            const iconDiv = document.createElement('div');
+            iconDiv.className = `p-3 bg-brand-light/10 dark:bg-slate-700 rounded-full ${data.iconColor}`;
+            iconDiv.innerHTML = data.iconSvg;
+            const titleDiv = document.createElement('div');
+            titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">${data.title}</h2>`;
+            if (data.subtitle) titleDiv.innerHTML += `<p class="text-gray-500 dark:text-gray-400">${data.subtitle}</p>`;
+            header.appendChild(iconDiv); header.appendChild(titleDiv); wrapper.appendChild(header);
+
+            // Body
+            const bodyDiv = document.createElement('div');
+            bodyDiv.className = 'flex-1 space-y-4';
+
+            if(data.content) {
+                const list = document.createElement('div'); list.className = 'space-y-3 mt-4';
+                data.content.forEach(text => {
+                    list.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-3 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-gray-700 dark:text-gray-200">${text}</p></div>`;
+                });
+                bodyDiv.appendChild(list);
+            }
+            if(data.explanation) bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4 text-gray-700 dark:text-yellow-100 italic">${data.explanation}</div>`;
+            if(data.rules) {
+                data.rules.forEach(r => bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row gap-2 sm:gap-4 bg-gray-50 dark:bg-slate-700 p-3 rounded"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] text-sm uppercase">${r.label}</span><span class="text-gray-700 dark:text-gray-200">${r.text}</span></div>`);
+            }
+            if(data.example) {
+                bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg"><p class="text-xs text-gray-400 font-bold mb-2">CONTOH:</p><p class="mb-1">${data.example.q || data.example.topic}</p>${data.example.a ? `<p class="text-brand-light font-bold">➜ ${data.example.a}</p>` : ''}</div>`;
+            }
+
+            wrapper.appendChild(bodyDiv); container.appendChild(wrapper);
+            updateControls();
+        }
+
+        function updateControls() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${slides.length}`;
+            document.getElementById('progress-bar').style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+        }
+
+        function changeSlide(n) {
+            if (currentSlide + n >= 0 && currentSlide + n < slides.length) {
+                currentSlide += n;
+                renderSlide();
+            }
+        }
+        
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+
+        renderSlide();
+    </script>
+</body>
+</html>

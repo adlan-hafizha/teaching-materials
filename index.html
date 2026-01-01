@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning Hub - Rangkuman Materi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2327B6C1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/><path d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/></svg>">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#27B6C1',
+                            dark: '#13636A',
+                            white: '#FFFFFF',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animasi Transisi Halus */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(39, 182, 193, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100 flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-50 w-full backdrop-blur-lg bg-white/80 dark:bg-slate-900/80 border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <div class="bg-brand-light p-2 rounded-lg text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-brand-dark dark:text-brand-light">EngMateri</span>
+                </div>
+
+                <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-light transition-all">
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="py-12 sm:py-20 text-center px-4">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Belajar Bahasa Inggris <br class="hidden sm:block">
+                <span class="text-brand-light">Lebih Mudah & Terstruktur</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-300 mb-8">
+                Kumpulan rangkuman materi, rumus grammar, dan latihan soal untuk jenjang SMP hingga SMA. Pilih kelasmu dan mulai belajar sekarang.
+            </p>
+        </section>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+            
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-gray-300 dark:bg-slate-700 flex-1"></div>
+                <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Sekolah Menengah Pertama (SMP)</span>
+                <div class="h-px bg-gray-300 dark:bg-slate-700 flex-1"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <a href="Kelas 7/index.html" class="group bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 overflow-hidden card-hover block h-full flex flex-col">
+                    <div class="h-2 bg-brand-light w-full"></div>
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-brand-light mb-4 group-hover:bg-brand-light group-hover:text-white transition-colors">
+                            <span class="font-bold text-xl">7</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Kelas 7</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 flex-grow">Dasar-dasar Greetings, Introduction, Descriptive Text, dan Vocabulary dasar.</p>
+                        <div class="mt-auto pt-4 flex items-center text-brand-light font-semibold text-sm group-hover:text-brand-dark dark:group-hover:text-cyan-300">
+                            Lihat Materi <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="Kelas 8/index.html" class="group bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 overflow-hidden card-hover block h-full flex flex-col">
+                    <div class="h-2 bg-brand-dark w-full"></div>
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center text-brand-dark mb-4 group-hover:bg-brand-dark group-hover:text-white transition-colors">
+                            <span class="font-bold text-xl">8</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Kelas 8</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 flex-grow">Recount Text, Comparison Degree, Simple Past Tense, dan Notice.</p>
+                        <div class="mt-auto pt-4 flex items-center text-brand-dark font-semibold text-sm group-hover:text-brand-light dark:group-hover:text-cyan-300">
+                            Lihat Materi <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="Kelas 9/index.html" class="group bg-white dark:bg-slate-800 rounded-xl shadow-lg border-2 border-brand-light/20 dark:border-brand-light/10 overflow-hidden card-hover block h-full flex flex-col relative">
+                    <div class="h-2 bg-gradient-to-r from-brand-light to-brand-dark w-full"></div>
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center text-brand-light mb-4 group-hover:bg-brand-light group-hover:text-white transition-colors">
+                            <span class="font-bold text-xl">9</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Kelas 9</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 flex-grow">Persiapan Ujian Sekolah, Report Text, Passive Voice, dan Narrative Text.</p>
+                        <div class="mt-auto pt-4 flex items-center text-brand-light font-semibold text-sm group-hover:text-brand-dark dark:group-hover:text-cyan-300">
+                            Lihat Materi <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-gray-300 dark:bg-slate-700 flex-1"></div>
+                <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Sekolah Menengah Atas (SMA)</span>
+                <div class="h-px bg-gray-300 dark:bg-slate-700 flex-1"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="Kelas 10/index.html" class="group bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 overflow-hidden card-hover block h-full flex flex-col">
+                    <div class="h-2 bg-brand-light w-full"></div>
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-brand-light mb-4 group-hover:bg-brand-light group-hover:text-white transition-colors">
+                            <span class="font-bold text-xl">10</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Kelas 10</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 flex-grow">Peminatan Sastra, Recount Text (Historical), dan Descriptive Text Lanjutan.</p>
+                        <div class="mt-auto pt-4 flex items-center text-brand-light font-semibold text-sm group-hover:text-brand-dark dark:group-hover:text-cyan-300">
+                            Lihat Materi <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="Kelas 11/index.html" class="group bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 overflow-hidden card-hover block h-full flex flex-col">
+                    <div class="h-2 bg-brand-dark w-full"></div>
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center text-brand-dark mb-4 group-hover:bg-brand-dark group-hover:text-white transition-colors">
+                            <span class="font-bold text-xl">11</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Kelas 11</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 flex-grow">Analytical Exposition, Passive Voice Complex, dan Formal Invitation.</p>
+                        <div class="mt-auto pt-4 flex items-center text-brand-dark font-semibold text-sm group-hover:text-brand-light dark:group-hover:text-cyan-300">
+                            Lihat Materi <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="Kelas 12/index.html" class="group bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 overflow-hidden card-hover block h-full flex flex-col">
+                    <div class="h-2 bg-gradient-to-r from-brand-light to-brand-dark w-full"></div>
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center text-brand-light mb-4 group-hover:bg-brand-light group-hover:text-white transition-colors">
+                            <span class="font-bold text-xl">12</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Kelas 12</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 flex-grow">Discussion Text, Review Text, dan Persiapan Ujian Akhir (SNBT).</p>
+                        <div class="mt-auto pt-4 flex items-center text-brand-light font-semibold text-sm group-hover:text-brand-dark dark:group-hover:text-cyan-300">
+                            Lihat Materi <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 dark:text-slate-400 text-sm">
+                &copy; 2025 English Learning Hub by MAH. <br>
+                Belajar Bahasa Inggris jadi lebih menyenangkan.
+            </p>
+            
+            <p class="mt-4 text-slate-500 dark:text-slate-400 text-sm">
+                Ada masukan? 
+                <a href="https://forms.google.com/your-form-link" target="_blank" class="text-brand-light font-bold hover:underline hover:text-brand-dark transition-colors">
+                    Isi Feedback di sini
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Cek preferensi user saat load
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        // Event Listener Tombol Toggle
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icon
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // Set class html
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

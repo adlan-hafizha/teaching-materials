@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Semester Ganjil Kelas 8</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2327B6C1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/><path d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/></svg>">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Noto Sans', 'sans-serif'] },
+                    colors: { brand: { light: '#27B6C1', dark: '#13636A' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans', sans-serif; }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .content-scroll::-webkit-scrollbar { width: 6px; }
+        .content-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+        .dark .content-scroll::-webkit-scrollbar-thumb { background-color: #475569; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 text-slate-800 bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
+
+    <div class="w-full max-w-2xl bg-white dark:bg-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col relative border border-gray-200 dark:border-slate-700 h-[650px] md:h-[600px] transition-colors duration-300">
+        
+        <div class="bg-brand-light w-full h-2 shrink-0"></div>
+        
+        <div class="absolute top-4 right-4 z-20">
+             <a href="index.html" class="text-xs font-bold text-gray-400 hover:text-brand-light dark:hover:text-brand-light flex items-center gap-1 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                KEMBALI
+            </a>
+        </div>
+
+        <div id="slide-container" class="flex-1 p-6 sm:p-8 flex flex-col overflow-y-auto content-scroll relative">
+        </div>
+
+        <div class="bg-gray-100 dark:bg-slate-900 p-4 border-t dark:border-slate-700 flex justify-between items-center shrink-0 z-10 transition-colors duration-300">
+            <button id="prev-btn" onclick="changeSlide(-1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-white dark:bg-slate-800 text-brand-light dark:text-brand-light shadow hover:bg-brand-light/10 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none border border-transparent dark:border-slate-700">
+                Sebelumnya
+            </button>
+            <span id="slide-counter" class="text-sm font-bold text-gray-500 dark:text-gray-400">Slide 1</span>
+            <button id="next-btn" onclick="changeSlide(1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-brand-light text-white shadow hover:bg-brand-dark disabled:opacity-50 disabled:cursor-not-allowed">
+                Selanjutnya
+            </button>
+        </div>
+        <div class="w-full bg-gray-200 dark:bg-slate-700 h-1 shrink-0"><div id="progress-bar" class="bg-brand-light h-1 transition-all duration-300" style="width: 0%"></div></div>
+    </div>
+
+    <p class="mt-4 text-xs text-gray-400">Gunakan tombol panah Kiri/Kanan di keyboard untuk navigasi.</p>
+    <p class="mt-4 text-xs text-gray-400">&copy; 2025 English Learning Hub by MAH.</p>
+    
+    <button onclick="toggleDarkMode()" class="mt-2 text-xs px-3 py-1 rounded-full bg-gray-200 dark:bg-slate-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-slate-700 transition-colors">
+        Ubah Mode (Terang/Gelap)
+    </button>
+
+    <script>
+        const slides = [
+            {
+                type: "intro", title: "Bahasa Inggris Kelas 8", subtitle: "Semester Ganjil",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+                content: ["Descriptive & Recount Text", "Comparisons & Adjectives", "Asking Help & Permission", "Simple Present & WH Questions", "Inviting & Opinions"]
+            },
+            {
+                type: "content", title: "1. Help, Permission & Approval",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0-9-9c0 1.48.35 2.87.97 4.13"/><path d="M12 12a3 3 0 1 0-3-3"/><path d="M7 21v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/></svg>`,
+                explanation: "Ekspresi untuk meminta bantuan, izin, dan persetujuan.",
+                rules: [
+                    { label: "HELP", text: "Can you help me? / May I help you?" },
+                    { label: "PERMISSION", text: "May I go out? / Can I borrow your pen?" },
+                    { label: "APPROVAL", text: "Do you agree? / Is this okay?" }
+                ]
+            },
+            {
+                type: "content", title: "2. Adjectives & Comparisons",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>`,
+                explanation: "Membandingkan sifat benda (Comparative Degree).",
+                rules: [
+                    { label: "ADJECTIVE", text: "Kata sifat (e.g., Big, Beautiful, Smart)." },
+                    { label: "COMPARATIVE", text: "Adjective + -er (Bigger) OR More + Adjective (More beautiful)." },
+                    { label: "USE", text: "Than (Lebih dari). e.g., She is smarter than him." }
+                ]
+            },
+            {
+                type: "content", title: "3. Descriptive Text & Places",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>`,
+                explanation: "Mendeskripsikan orang, tempat, atau benda (Describing Places).",
+                rules: [
+                    { label: "STRUCTURE", text: "Identification -> Description." },
+                    { label: "GRAMMAR", text: "Simple Present Tense (V1/is/am/are)." },
+                    { label: "ARTICLES", text: "A/An (Tunggal umum), The (Spesifik)." }
+                ],
+                example: { topic: "My Classroom, Borobudur Temple, My Favorite Teacher." }
+            },
+            {
+                type: "content", title: "4. Opinions & Invitations",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+                explanation: "Memberi pendapat dan mengundang orang lain.",
+                rules: [
+                    { label: "OPINION", text: "What do you think? / I think..." },
+                    { label: "INVITE", text: "Let's go to... / Would you like to come?" }
+                ]
+            },
+            {
+                type: "content", title: "5. Recount Text",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+                explanation: "Menceritakan pengalaman masa lalu.",
+                rules: [
+                    { label: "STRUCTURE", text: "Orientation -> Events -> Re-orientation." },
+                    { label: "GRAMMAR", text: "Simple Past Tense (V2)." }
+                ],
+                example: { topic: "My Holiday, Camping Trip." }
+            },
+            {
+                type: "content", title: "6. Grammar Focus",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>`,
+                explanation: "Fokus tata bahasa semester ini.",
+                rules: [
+                    { label: "SIMPLE PRESENT", text: "S + V1 (s/es). (Habits/Facts)" },
+                    { label: "WH QUESTIONS", text: "What, Where, When, Who, Why, How." },
+                    { label: "ARTICLES", text: "An apple (vowel sound), A book (consonant)." }
+                ]
+            }
+        ];
+
+        let currentSlide = 0;
+        function renderSlide() {
+            const container = document.getElementById('slide-container');
+            const data = slides[currentSlide];
+            container.innerHTML = '';
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col h-full fade-in';
+            
+            // Header
+            const header = document.createElement('div');
+            header.className = 'flex items-center gap-4 mb-6 border-b dark:border-slate-700 pb-4 shrink-0';
+            const iconDiv = document.createElement('div');
+            iconDiv.className = `p-3 bg-brand-light/10 dark:bg-slate-700 rounded-full ${data.iconColor}`;
+            iconDiv.innerHTML = data.iconSvg;
+            const titleDiv = document.createElement('div');
+            titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">${data.title}</h2>`;
+            if (data.subtitle) titleDiv.innerHTML += `<p class="text-gray-500 dark:text-gray-400">${data.subtitle}</p>`;
+            header.appendChild(iconDiv); header.appendChild(titleDiv); wrapper.appendChild(header);
+
+            // Body
+            const bodyDiv = document.createElement('div');
+            bodyDiv.className = 'flex-1 space-y-4';
+
+            if(data.content) {
+                const list = document.createElement('div'); list.className = 'space-y-3 mt-4';
+                data.content.forEach(text => {
+                    list.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-3 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-gray-700 dark:text-gray-200">${text}</p></div>`;
+                });
+                bodyDiv.appendChild(list);
+            }
+            if(data.explanation) bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4 text-gray-700 dark:text-yellow-100 italic">${data.explanation}</div>`;
+            if(data.rules) {
+                data.rules.forEach(r => bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row gap-2 sm:gap-4 bg-gray-50 dark:bg-slate-700 p-3 rounded"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] text-sm uppercase">${r.label}</span><span class="text-gray-700 dark:text-gray-200">${r.text}</span></div>`);
+            }
+            if(data.example) {
+                bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg"><p class="text-xs text-gray-400 font-bold mb-2">CONTOH:</p><p class="mb-1">${data.example.q || data.example.topic}</p>${data.example.a ? `<p class="text-brand-light font-bold">➜ ${data.example.a}</p>` : ''}</div>`;
+            }
+
+            wrapper.appendChild(bodyDiv); container.appendChild(wrapper);
+            updateControls();
+        }
+
+        function updateControls() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${slides.length}`;
+            document.getElementById('progress-bar').style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+        }
+        function changeSlide(n) { if (currentSlide + n >= 0 && currentSlide + n < slides.length) { currentSlide += n; renderSlide(); } }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+        renderSlide();
+    </script>
+</body>
+</html>

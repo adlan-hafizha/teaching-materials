@@ -3,13 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ringkasan Materi PSAS Inggris Kelas 9</title>
+    <title>Materi Semester Ganjil Kelas 9</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2327B6C1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/><path d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/></svg>">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Noto Sans', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            light: '#27B6C1',
+                            dark: '#13636A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body {
             font-family: 'Noto Sans', sans-serif;
-            background-color: #f3f4f6;
         }
         .fade-in {
             animation: fadeIn 0.4s ease-out forwards;
@@ -25,24 +43,35 @@
             background-color: #cbd5e1;
             border-radius: 4px;
         }
+        /* Penyesuaian scrollbar untuk dark mode */
+        .dark .content-scroll::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-4 text-slate-800">
+<body class="flex flex-col items-center justify-center min-h-screen p-4 text-slate-800 bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
 
-    <div class="w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col relative border border-gray-200 h-[600px] md:h-[500px]">
+    <div class="w-full max-w-2xl bg-white dark:bg-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col relative border border-gray-200 dark:border-slate-700 h-[600px] md:h-[500px] transition-colors duration-300">
         
         <div class="bg-[#27B6C1] w-full h-2 shrink-0"></div>
+        
+        <div class="absolute top-4 right-4 z-20">
+             <a href="index.html" class="text-xs font-bold text-gray-400 hover:text-brand-light dark:hover:text-brand-light flex items-center gap-1 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                KEMBALI
+            </a>
+        </div>
 
         <div id="slide-container" class="flex-1 p-6 sm:p-8 flex flex-col overflow-y-auto content-scroll relative">
         </div>
 
-        <div class="bg-gray-100 p-4 border-t flex justify-between items-center shrink-0 z-10">
-            <button id="prev-btn" onclick="changeSlide(-1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-white text-[#27B6C1] shadow hover:bg-[#27B6C1]/10 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none">
+        <div class="bg-gray-100 dark:bg-slate-900 p-4 border-t dark:border-slate-700 flex justify-between items-center shrink-0 z-10 transition-colors duration-300">
+            <button id="prev-btn" onclick="changeSlide(-1)" class="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all bg-white dark:bg-slate-800 text-[#27B6C1] dark:text-[#27B6C1] shadow hover:bg-[#27B6C1]/10 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none border border-transparent dark:border-slate-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 <span class="hidden sm:inline">Sebelumnya</span>
             </button>
 
-            <span id="slide-counter" class="text-sm font-bold text-gray-500">
+            <span id="slide-counter" class="text-sm font-bold text-gray-500 dark:text-gray-400">
                 Slide 1 / 9
             </span>
 
@@ -52,27 +81,31 @@
             </button>
         </div>
 
-        <div class="w-full bg-gray-200 h-1 shrink-0">
+        <div class="w-full bg-gray-200 dark:bg-slate-700 h-1 shrink-0">
             <div id="progress-bar" class="bg-[#27B6C1] h-1 transition-all duration-300" style="width: 0%"></div>
         </div>
 
     </div>
 
     <p class="mt-4 text-xs text-gray-400">Gunakan tombol panah Kiri/Kanan di keyboard untuk navigasi.</p>
-    <p class="mt-4 text-xs text-gray-400">Dibuat oleh MAH.</p>
+    <p class="mt-4 text-xs text-gray-400">&copy; 2025 English Learning Hub by MAH.</p>
+    
+    <button onclick="toggleDarkMode()" class="mt-2 text-xs px-3 py-1 rounded-full bg-gray-200 dark:bg-slate-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-slate-700 transition-colors">
+        Ubah Mode (Terang/Gelap)
+    </button>
 
     <script>
         const slides = [
             {
                 type: "intro",
-                title: "Rangkuman Materi PSAS Inggris",
-                subtitle: "Kelas 9 - Brain Academy by Ruangguru",
+                title: "Bahasa Inggris Kelas 9",
+                subtitle: "Semester Ganjil",
                 iconColor: "text-[#27B6C1]",
                 iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
                 content: [
-                    "Persiapan Ujian Semester Ganjil 2025",
+                    "Persiapan Ujian Semester Ganjil",
                     "Mencakup: Grammar, Teks Fungsional, dan Writing",
-                    "Total Soal: 25 PG, 5 T/F, 5 Isian, 5 Essay"
+                    "Isi konten: 7 Materi + Tips Essay + Latihan Soal"
                 ]
             },
             {
@@ -276,20 +309,24 @@
             wrapper.className = 'flex flex-col h-full fade-in';
             
             const header = document.createElement('div');
-            header.className = 'flex items-center gap-4 mb-6 border-b pb-4 shrink-0';
+            // Update: Dark mode border
+            header.className = 'flex items-center gap-4 mb-6 border-b dark:border-slate-700 pb-4 shrink-0';
             
             const iconDiv = document.createElement('div');
+            // Update: Dark mode background
             if (currentSlide === 0) {
-                 iconDiv.className = `p-3 rounded-full bg-[#27B6C1]/10 ${data.iconColor}`;
+                 iconDiv.className = `p-3 rounded-full bg-[#27B6C1]/10 dark:bg-slate-700 ${data.iconColor}`;
             } else {
-                 iconDiv.className = `p-3 bg-blue-50 rounded-full ${data.iconColor}`;
+                 iconDiv.className = `p-3 bg-blue-50 dark:bg-slate-700 rounded-full ${data.iconColor}`;
             }
             iconDiv.innerHTML = data.iconSvg;
             
             const titleDiv = document.createElement('div');
-            titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 leading-tight">${data.title}</h2>`;
+            // Update: Dark mode text color
+            titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">${data.title}</h2>`;
             if (data.subtitle) {
-                titleDiv.innerHTML += `<p class="text-gray-500">${data.subtitle}</p>`;
+                // Update: Dark mode subtitle color
+                titleDiv.innerHTML += `<p class="text-gray-500 dark:text-gray-400">${data.subtitle}</p>`;
             }
 
             header.appendChild(iconDiv);
@@ -304,8 +341,9 @@
                 list.className = 'space-y-4 mt-4';
                 data.content.forEach(text => {
                     const item = document.createElement('div');
-                    item.className = 'flex items-center gap-3 bg-[#27B6C1]/10 p-4 rounded-lg';
-                    item.innerHTML = `<div class="w-2 h-2 rounded-full bg-[#27B6C1] shrink-0"></div><p class="text-lg text-gray-700 font-medium">${text}</p>`;
+                    // Update: Dark mode bg and text
+                    item.className = 'flex items-center gap-3 bg-[#27B6C1]/10 dark:bg-slate-700/50 p-4 rounded-lg';
+                    item.innerHTML = `<div class="w-2 h-2 rounded-full bg-[#27B6C1] shrink-0"></div><p class="text-lg text-gray-700 dark:text-gray-200 font-medium">${text}</p>`;
                     list.appendChild(item);
                 });
                 bodyDiv.appendChild(list);
@@ -315,7 +353,8 @@
                 list.className = 'space-y-3 mt-2';
                 data.content.forEach(text => {
                     const item = document.createElement('div');
-                    item.className = 'p-4 bg-indigo-50 border border-indigo-100 rounded-lg text-indigo-900 font-medium shadow-sm';
+                    // Update: Dark mode bg, border, and text
+                    item.className = 'p-4 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 rounded-lg text-indigo-900 dark:text-indigo-200 font-medium shadow-sm';
                     item.textContent = text;
                     list.appendChild(item);
                 });
@@ -324,8 +363,9 @@
             else if (data.type === 'content') {
                 if (data.explanation) {
                     const exp = document.createElement('div');
-                    exp.className = 'bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-4';
-                    exp.innerHTML = `<p class="text-gray-700 italic">${data.explanation}</p>`;
+                    // Update: Dark mode bg and text
+                    exp.className = 'bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4';
+                    exp.innerHTML = `<p class="text-gray-700 dark:text-yellow-100 italic">${data.explanation}</p>`;
                     bodyDiv.appendChild(exp);
                 }
 
@@ -334,8 +374,9 @@
                     rulesGrid.className = 'grid gap-3';
                     data.rules.forEach(rule => {
                         const ruleDiv = document.createElement('div');
-                        ruleDiv.className = 'flex flex-col sm:flex-row sm:items-center bg-gray-50 p-3 rounded hover:bg-gray-100 transition-colors gap-2 sm:gap-4';
-                        ruleDiv.innerHTML = `<span class="font-bold text-blue-700 min-w-[100px] uppercase text-sm tracking-wide mb-1 sm:mb-0">${rule.label}</span><span class="text-gray-700">${rule.text}</span>`;
+                        // Update: Dark mode bg, hover, and text
+                        ruleDiv.className = 'flex flex-col sm:flex-row sm:items-center bg-gray-50 dark:bg-slate-700 p-3 rounded hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors gap-2 sm:gap-4';
+                        ruleDiv.innerHTML = `<span class="font-bold text-blue-700 dark:text-blue-300 min-w-[100px] uppercase text-sm tracking-wide mb-1 sm:mb-0">${rule.label}</span><span class="text-gray-700 dark:text-gray-200">${rule.text}</span>`;
                         rulesGrid.appendChild(ruleDiv);
                     });
                     bodyDiv.appendChild(rulesGrid);
@@ -343,7 +384,8 @@
 
                 if (data.example) {
                     const exBox = document.createElement('div');
-                    exBox.className = 'mt-6 bg-slate-800 text-white p-4 rounded-lg shadow-inner';
+                    // Update: Dark mode bg
+                    exBox.className = 'mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg shadow-inner';
                     exBox.innerHTML = `<p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>`;
                     
                     let exContent = '';
@@ -385,6 +427,24 @@
                 currentSlide = newIndex;
                 renderSlide();
             }
+        }
+
+        // Logic Dark Mode Sederhana
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+
+        // Cek Local Storage saat Load
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
 
         document.addEventListener('keydown', (e) => {
