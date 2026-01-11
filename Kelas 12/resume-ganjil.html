@@ -199,5 +199,81 @@
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
         renderSlide();
     </script>
+
+    <audio id="bg-music" loop preload="auto">
+    </audio>
+
+    <button id="music-btn" onclick="toggleMusic()" class="fixed bottom-6 left-6 z-50 p-3 rounded-full bg-white dark:bg-slate-800 text-[#27B6C1] shadow-lg border-2 border-[#27B6C1] hover:scale-110 transition-transform duration-300 group flex items-center justify-center w-12 h-12">
+        <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        <svg id="icon-pause" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+    </button>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            const iconPlay = document.getElementById('icon-play');
+            const iconPause = document.getElementById('icon-pause');
+        
+            const isSubFolder = window.location.pathname.includes('/Kelas');
+            const musicPath = isSubFolder ? "../music.mp3" : "music.mp3";
+            
+            music.innerHTML = `<source src="${musicPath}" type="audio/mpeg">`;
+            music.load();
+        
+            const savedTime = localStorage.getItem('music_time');
+            const isPlaying = localStorage.getItem('music_playing') === 'true';
+        
+            if (savedTime) {
+                music.currentTime = parseFloat(savedTime);
+            }
+        
+            if (isPlaying) {
+                const playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        updateIcon(true);
+                    }).catch(error => {
+                        console.log("Autoplay dicegah browser. User harus klik manual.");
+                        updateIcon(false);
+                    });
+                }
+            }
+        
+            music.addEventListener('timeupdate', () => {
+                localStorage.setItem('music_time', music.currentTime);
+            });
+        
+            music.addEventListener('play', () => {
+                localStorage.setItem('music_playing', 'true');
+                updateIcon(true);
+            });
+        
+            music.addEventListener('pause', () => {
+                localStorage.setItem('music_playing', 'false');
+                updateIcon(false);
+            });
+        
+            window.toggleMusic = function() {
+                if (music.paused) {
+                    music.play();
+                } else {
+                    music.pause();
+                }
+            }
+        
+            function updateIcon(isPlaying) {
+                if (isPlaying) {
+                    iconPlay.classList.add('hidden');
+                    iconPause.classList.remove('hidden');
+                    btn.classList.add('ring-4', 'ring-[#27B6C1]/30');
+                } else {
+                    iconPlay.classList.remove('hidden');
+                    iconPause.classList.add('hidden');
+                    btn.classList.remove('ring-4', 'ring-[#27B6C1]/30');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
