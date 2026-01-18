@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum Diskusi - English Learning Hub</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2327B6C1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/><path d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/></svg>">
@@ -31,14 +33,13 @@
 
     <header class="sticky top-0 z-50 w-full backdrop-blur-lg bg-white/80 dark:bg-slate-900/80 border-b border-gray-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <a href="index.html" class="flex items-center gap-2 group">
-                    <div class="bg-brand-light p-2 rounded-lg text-white group-hover:bg-brand-dark transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-                    </div>
-                    <span class="font-bold text-lg text-brand-dark dark:text-brand-light">Kembali ke Home</span>
-                </a>
-            </div>
+            <a href="index.html" class="flex items-center gap-2 group hover:opacity-80 transition-opacity">
+                <div class="bg-brand-light p-2 rounded-lg text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                </div>
+                <span class="font-bold text-lg text-brand-dark dark:text-brand-light">Kembali ke Beranda</span>
+            </a>
+            
             <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-gray-400">
                 <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -48,20 +49,33 @@
 
     <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
         <div class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-slate-800 dark:text-white mb-2">Forum Diskusi Siswa</h1>
-            <p class="text-slate-600 dark:text-slate-300">Tanyakan materi yang belum paham atau berdiskusi dengan teman lainnya di sini.</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Forum Diskusi <span class="text-brand-light">Siswa</span>
+            </h1>
+            <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+                Ruang untuk bertanya, berbagi tips belajar, dan berdiskusi tentang materi Bahasa Inggris dari Kelas 7 hingga 12.
+            </p>
         </div>
 
-        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700">
+        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700">
             <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         </div>
     </main>
 
     <footer class="bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500 dark:text-slate-400">
-            &copy; 2025 English Learning Hub.
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 dark:text-slate-400 text-sm">
+                &copy; 2025 English Learning Hub by MAH.
+            </p>
         </div>
     </footer>
+
+    <audio id="bg-music" loop preload="auto"></audio>
+    <button id="music-btn" onclick="toggleMusic()" class="fixed bottom-6 left-6 z-50 p-3 rounded-full bg-white dark:bg-slate-800 text-[#27B6C1] shadow-lg border-2 border-[#27B6C1] hover:scale-110 transition-transform duration-300 group flex items-center justify-center w-12 h-12">
+        <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        <svg id="icon-pause" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+    </button>
 
     <script>
         // 1. Logic Dark Mode
@@ -99,20 +113,64 @@
             }
         });
 
-        // 2. CONFIG DISQUS (WAJIB DIGANTI SHORTNAME-NYA)
+        // 2. CONFIG DISQUS (PENTING: Ganti Shortname di bawah ini)
         var disqus_config = function () {
             this.page.url = window.location.href;  
-            this.page.identifier = 'forum-diskusi-utama'; 
+            this.page.identifier = 'forum-diskusi-global'; 
         };
         
         (function() { 
-            // GANTI 'EXAMPLE' DI BAWAH DENGAN SHORTNAME DISQUS KAMU
-            // Cara dapat shortname: Daftar di disqus.com -> Create Site -> Copy Shortname
             var d = document, s = d.createElement('script');
-            s.src = 'https://english-learning-hub-demo.disqus.com/embed.js'; // GANTI INI
+            // GANTI 'english-learning-hub-demo' DENGAN SHORTNAME KAMU DARI DISQUS.COM
+            s.src = 'https://english-learning-hub-demo.disqus.com/embed.js'; 
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();
+
+        // 3. Logic Musik
+        document.addEventListener("DOMContentLoaded", function() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            const iconPlay = document.getElementById('icon-play');
+            const iconPause = document.getElementById('icon-pause');
+
+            // Path Musik (Karena ini di root, langsung panggil music.mp3)
+            music.innerHTML = `<source src="music.mp3" type="audio/mpeg">`;
+            music.load();
+
+            const savedTime = localStorage.getItem('music_time');
+            const isPlaying = localStorage.getItem('music_playing') === 'true';
+
+            if (savedTime) music.currentTime = parseFloat(savedTime);
+
+            if (isPlaying) {
+                const playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => updateIcon(true)).catch(() => updateIcon(false));
+                }
+            }
+
+            music.addEventListener('timeupdate', () => localStorage.setItem('music_time', music.currentTime));
+            music.addEventListener('play', () => { localStorage.setItem('music_playing', 'true'); updateIcon(true); });
+            music.addEventListener('pause', () => { localStorage.setItem('music_playing', 'false'); updateIcon(false); });
+
+            window.toggleMusic = function() {
+                if (music.paused) music.play();
+                else music.pause();
+            }
+
+            function updateIcon(isPlaying) {
+                if (isPlaying) {
+                    iconPlay.classList.add('hidden');
+                    iconPause.classList.remove('hidden');
+                    btn.classList.add('ring-4', 'ring-[#27B6C1]/30');
+                } else {
+                    iconPlay.classList.remove('hidden');
+                    iconPause.classList.add('hidden');
+                    btn.classList.remove('ring-4', 'ring-[#27B6C1]/30');
+                }
+            }
+        });
     </script>
 </body>
 </html>
