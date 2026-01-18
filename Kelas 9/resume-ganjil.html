@@ -94,41 +94,210 @@
         Ubah Mode (Terang/Gelap)
     </button>
 
-    <script type="module">
-        import { db, collection, getDocs, query, where, orderBy } from '../firebase-config.js';
-
-        let slides = [];
-        let currentSlide = 0;
-
-        async function loadData() {
-            const container = document.getElementById('slide-container');
-            container.innerHTML = '<div class="flex h-full items-center justify-center">Loading Data...</div>';
-
-            // Kelas dan Semester
-            const q = query(
-                collection(db, "materials"), 
-                where("kelas", "==", "9"), 
-                where("semester", "==", "ganjil"),
-                orderBy("timestamp", "asc")
-            );
-
-            try {
-                const querySnapshot = await getDocs(q);
-                slides = [];
-                querySnapshot.forEach((doc) => {
-                    slides.push(doc.data());
-                });
-
-                if (slides.length === 0) {
-                    container.innerHTML = '<div class="flex h-full items-center justify-center text-center p-10">Belum ada materi yang diinput oleh Admin.<br>Silakan cek kembali nanti.</div>';
-                } else {
-                    renderSlide();
+    <script>
+        const slides = [
+            {
+                type: "intro",
+                title: "Bahasa Inggris Kelas 9",
+                subtitle: "Semester Ganjil",
+                iconColor: "text-[#27B6C1]",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+                content: [
+                    "Persiapan Ujian Semester Ganjil",
+                    "Mencakup: Grammar, Teks Fungsional, dan Writing",
+                    "Isi konten: 7 Materi + Tips Essay + Latihan Soal"
+                ]
+            },
+            {
+                type: "content",
+                title: "1. Have vs Has (Simple Present)",
+                iconColor: "text-green-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+                explanation: "Digunakan untuk menunjukkan kepemilikan (possession) atau kewajiban.",
+                rules: [
+                    { label: "HAVE", text: "I, You, They, We" },
+                    { label: "HAS", text: "He, She, It, Nama Tunggal (Andi)" }
+                ],
+                example: {
+                    q: "She ______ a new bicycle.",
+                    a: "Has (Karena subjeknya She)"
                 }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                container.innerHTML = '<div class="text-red-500 text-center mt-10">Gagal memuat data. Pastikan internet lancar.</div>';
+            },
+            {
+                type: "content",
+                title: "2. Passive Voice (Kalimat Pasif)",
+                iconColor: "text-purple-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+                explanation: "Fokus pada objek yang dikenai tindakan. Subjek menjadi penerima aksi.",
+                rules: [
+                    { label: "RUMUS", text: "Subject + To Be (is/am/are/was/were) + Verb 3" }
+                ],
+                example: {
+                    active: "My mother cooks fried rice.",
+                    passive: "Fried rice is cooked by my mother."
+                }
+            },
+            {
+                type: "content",
+                title: "3. Report Text",
+                iconColor: "text-orange-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+                explanation: "Teks yang menjelaskan sesuatu secara umum berdasarkan fakta ilmiah.",
+                rules: [
+                    { label: "GENERIC STRUCTURE", text: "1. General Classification (Definisi/Klasifikasi umum), 2. Description (Deskripsi bagian/sifat)" },
+                    { label: "CIRI 1", text: "Menggunakan Simple Present Tense (General Truth)" },
+                    { label: "CIRI 2", text: "Objek bersifat umum (e.g., 'Elephants', bukan 'My Elephant')" },
+                    { label: "TUJUAN", text: "Menyampaikan informasi faktual apa adanya." }
+                ],
+                example: {
+                    topic: "Contoh Topik: 'Elephants', 'Tsunami', 'Mobile Phones'."
+                }
+            },
+            {
+                type: "content",
+                title: "4. Simple Past Tense",
+                iconColor: "text-red-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+                explanation: "Menyatakan kejadian yang sudah selesai di masa lampau.",
+                rules: [
+                    { label: "VERBAL", text: "Subject + Verb 2 (went, ate, studied)" },
+                    { label: "NOMINAL", text: "Subject + Was/Were + Adjective/Noun" },
+                    { label: "WAKTU", text: "Yesterday, last week, in 2010" }
+                ],
+                example: {
+                    q: "I _____ to Bali last year.",
+                    a: "Went (V2 dari Go)"
+                }
+            },
+            {
+                type: "content",
+                title: "5. Recount Text",
+                iconColor: "text-teal-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+                explanation: "Menceritakan kembali pengalaman masa lalu (Retelling past events).",
+                rules: [
+                    { label: "STRUKTUR 1", text: "Orientation (Siapa, kapan, di mana)" },
+                    { label: "STRUKTUR 2", text: "Events (Urutan kejadian kronologis)" },
+                    { label: "STRUKTUR 3", text: "Re-orientation (Kesimpulan/Perasaan)" }
+                ],
+                example: {
+                    topic: "Topik Umum: 'My Holiday', 'Unforgettable Moment'."
+                }
+            },
+            {
+                type: "content",
+                title: "6. Direct & Indirect Speech",
+                iconColor: "text-pink-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+                explanation: "Melaporkan ucapan orang lain (Kalimat Langsung ke Tidak Langsung).",
+                rules: [
+                    { label: "PRINSIP", text: "Tenses biasanya mundur satu langkah (Present -> Past)" },
+                    { label: "TO-BE", text: "Am/Is -> Was, Are -> Were" },
+                    { label: "MODAL", text: "Will -> Would, Can -> Could" }
+                ],
+                example: {
+                    direct: 'Andi said, "I am hungry."',
+                    indirect: 'Andi said that he was hungry.'
+                }
+            },
+            {
+                type: "content",
+                title: "7. Connectors (Kata Hubung)",
+                iconColor: "text-yellow-500",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+                explanation: "Kata hubung untuk merangkai urutan kejadian di masa lampau.",
+                rules: [
+                    { label: "WHEN / WHILE", text: "Kejadian berpotongan (When + V2, While + Was/Were V-ing)" },
+                    { label: "BEFORE / AFTER", text: "Urutan waktu (Sebelum / Sesudah)" },
+                    { label: "AS SOON AS", text: "Segera setelah (Aksi langsung menyusul aksi lain)" },
+                    { label: "ONCE", text: "Setelah / Ketika (Menandakan satu aksi tuntas)" }
+                ],
+                example: {
+                    ex1: "Call me AS SOON AS you arrive.",
+                    ex2: "ONCE he finished eating, he went to sleep."
+                }
+            },
+            {
+                type: "summary",
+                title: "Tips Khusus Essay",
+                iconColor: "text-indigo-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+                content: [
+                    "1. Hafalkan rumus Passive Voice (Tobe + V3).",
+                    "2. Pahami ciri-ciri Report Text (General Noun, Present Tense).",
+                    "3. Latihan menulis cerita pendek liburan (Recount Text).",
+                    "4. Perhatikan perubahan Tobe pada Direct -> Indirect Speech."
+                ]
+            },
+            {
+                type: "intro",
+                title: "Latihan Soal Essay",
+                subtitle: "Siapkan kertas, coba kerjakan sebelum melihat jawaban!",
+                iconColor: "text-red-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+                content: [
+                    "Bagian ini berisi 5 soal prediksi Essay.",
+                    "Tekan 'Selanjutnya' untuk mulai latihan."
+                ]
+            },
+            {
+                type: "content",
+                title: "Latihan 1: Passive Voice",
+                iconColor: "text-purple-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+                explanation: "Ubah kalimat berikut menjadi Passive Voice!",
+                example: {
+                    active: "The students sweep the classroom every morning.",
+                    passive: "The classroom IS SWEPT by the students every morning."
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 2: Report Text",
+                iconColor: "text-orange-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+                explanation: "Jawablah pertanyaan terkait ciri-ciri Report Text berikut.",
+                example: {
+                    q: "Sebutkan 2 Generic Structure dari Report Text!",
+                    a: "1. General Classification, 2. Description"
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 3: Connectors",
+                iconColor: "text-yellow-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+                explanation: "Gabungkan dua kalimat ini menggunakan kata hubung 'BEFORE'.",
+                example: {
+                    q: "1. He washed his hands. 2. He ate dinner.",
+                    a: "He washed his hands BEFORE he ate dinner."
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 4: Recount Text",
+                iconColor: "text-teal-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+                explanation: "Contoh Recount Text lengkap dengan struktur: Orientation, Events, & Re-orientation.",
+                example: {
+                    q: "Topic: My Camping Trip",
+                    a: "<b>(Orientation)</b> Last weekend, my friends and I went camping. <br><b>(Events)</b> First, we set up the tent. Then, we made a campfire and sang songs. <br><b>(Re-orientation)</b> We felt very happy and relaxed."
+                }
+            },
+            {
+                type: "content",
+                title: "Latihan 5: Direct & Indirect",
+                iconColor: "text-pink-600",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+                explanation: "Ubah kalimat Direct Speech ini menjadi Indirect Speech.",
+                example: {
+                    direct: 'Rina said, "I am sad today."',
+                    indirect: 'Rina said that she was sad that day.'
+                }
             }
-        }
+        ];
+
+        let currentSlide = 0;
 
         function renderSlide() {
             const container = document.getElementById('slide-container');
@@ -140,17 +309,26 @@
             wrapper.className = 'flex flex-col h-full fade-in';
             
             const header = document.createElement('div');
+            // Update: Dark mode border
             header.className = 'flex items-center gap-4 mb-6 border-b dark:border-slate-700 pb-4 shrink-0';
             
-            const iconSvg = data.iconSvg || `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>`;
-            
             const iconDiv = document.createElement('div');
-            iconDiv.className = `p-3 rounded-full bg-brand-light/10 dark:bg-slate-700 text-brand-light`;
-            iconDiv.innerHTML = iconSvg;
+            // Update: Dark mode background
+            if (currentSlide === 0) {
+                 iconDiv.className = `p-3 rounded-full bg-[#27B6C1]/10 dark:bg-slate-700 ${data.iconColor}`;
+            } else {
+                 iconDiv.className = `p-3 bg-blue-50 dark:bg-slate-700 rounded-full ${data.iconColor}`;
+            }
+            iconDiv.innerHTML = data.iconSvg;
             
             const titleDiv = document.createElement('div');
+            // Update: Dark mode text color
             titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">${data.title}</h2>`;
-            
+            if (data.subtitle) {
+                // Update: Dark mode subtitle color
+                titleDiv.innerHTML += `<p class="text-gray-500 dark:text-gray-400">${data.subtitle}</p>`;
+            }
+
             header.appendChild(iconDiv);
             header.appendChild(titleDiv);
             wrapper.appendChild(header);
@@ -158,37 +336,92 @@
             const bodyDiv = document.createElement('div');
             bodyDiv.className = 'flex-1 space-y-4';
 
-            if (data.type === 'intro' && data.content) {
-                if (Array.isArray(data.content)) {
-                    data.content.forEach(text => {
-                        bodyDiv.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-4 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-lg text-gray-700 dark:text-gray-200 font-medium">${text}</p></div>`;
-                    });
-                }
+            if (data.type === 'intro') {
+                const list = document.createElement('div');
+                list.className = 'space-y-4 mt-4';
+                data.content.forEach(text => {
+                    const item = document.createElement('div');
+                    // Update: Dark mode bg and text
+                    item.className = 'flex items-center gap-3 bg-[#27B6C1]/10 dark:bg-slate-700/50 p-4 rounded-lg';
+                    item.innerHTML = `<div class="w-2 h-2 rounded-full bg-[#27B6C1] shrink-0"></div><p class="text-lg text-gray-700 dark:text-gray-200 font-medium">${text}</p>`;
+                    list.appendChild(item);
+                });
+                bodyDiv.appendChild(list);
             } 
+            else if (data.type === 'summary') {
+                const list = document.createElement('div');
+                list.className = 'space-y-3 mt-2';
+                data.content.forEach(text => {
+                    const item = document.createElement('div');
+                    // Update: Dark mode bg, border, and text
+                    item.className = 'p-4 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 rounded-lg text-indigo-900 dark:text-indigo-200 font-medium shadow-sm';
+                    item.textContent = text;
+                    list.appendChild(item);
+                });
+                bodyDiv.appendChild(list);
+            }
             else if (data.type === 'content') {
                 if (data.explanation) {
-                    bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4"><p class="text-gray-700 dark:text-yellow-100 italic">${data.explanation}</p></div>`;
+                    const exp = document.createElement('div');
+                    // Update: Dark mode bg and text
+                    exp.className = 'bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4';
+                    exp.innerHTML = `<p class="text-gray-700 dark:text-yellow-100 italic">${data.explanation}</p>`;
+                    bodyDiv.appendChild(exp);
                 }
-                if (data.rules && Array.isArray(data.rules)) {
+
+                if (data.rules) {
+                    const rulesGrid = document.createElement('div');
+                    rulesGrid.className = 'grid gap-3';
                     data.rules.forEach(rule => {
-                        bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row sm:items-center bg-gray-50 dark:bg-slate-700 p-3 rounded gap-2 sm:gap-4"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] uppercase text-sm tracking-wide">${rule.label}</span><span class="text-gray-700 dark:text-gray-200">${rule.text}</span></div>`;
+                        const ruleDiv = document.createElement('div');
+                        // Update: Dark mode bg, hover, and text
+                        ruleDiv.className = 'flex flex-col sm:flex-row sm:items-center bg-gray-50 dark:bg-slate-700 p-3 rounded hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors gap-2 sm:gap-4';
+                        ruleDiv.innerHTML = `<span class="font-bold text-blue-700 dark:text-blue-300 min-w-[100px] uppercase text-sm tracking-wide mb-1 sm:mb-0">${rule.label}</span><span class="text-gray-700 dark:text-gray-200">${rule.text}</span>`;
+                        rulesGrid.appendChild(ruleDiv);
                     });
+                    bodyDiv.appendChild(rulesGrid);
                 }
+
                 if (data.example) {
-                    let exContent = "";
-                    if (data.example.q) exContent = `<p class="font-mono text-lg mb-1">${data.example.q}</p><p class="text-green-400 text-sm">➜ ${data.example.a}</p>`;
-                    else if (data.example.topic) exContent = `<p>${data.example.topic}</p>`;
+                    const exBox = document.createElement('div');
+                    // Update: Dark mode bg
+                    exBox.className = 'mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg shadow-inner';
+                    exBox.innerHTML = `<p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>`;
                     
-                    bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg shadow-inner"><p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>${exContent}</div>`;
+                    let exContent = '';
+                    if (data.example.q) {
+                        exContent = `<p class="font-mono text-lg mb-1">${data.example.q}</p><p class="text-green-400 text-sm">➜ ${data.example.a}</p>`;
+                    } else if (data.example.active) {
+                        exContent = `<div class="space-y-2"><p><span class="text-red-300 font-bold">Aktif:</span> ${data.example.active}</p><p><span class="text-green-300 font-bold">Pasif:</span> ${data.example.passive}</p></div>`;
+                    } else if (data.example.topic) {
+                        exContent = `<p>${data.example.topic}</p>`;
+                    } else if (data.example.direct) {
+                        exContent = `<div class="space-y-2"><p><span class="text-red-300 font-bold">Direct:</span> ${data.example.direct}</p><p><span class="text-green-300 font-bold">Indirect:</span> ${data.example.indirect}</p></div>`;
+                    } else if (data.example.ex1) {
+                         exContent = `<div class="space-y-2 italic"><p>1. ${data.example.ex1}</p><p>2. ${data.example.ex2}</p></div>`;
+                    }
+                    exBox.innerHTML += exContent;
+                    bodyDiv.appendChild(exBox);
                 }
             }
 
             wrapper.appendChild(bodyDiv);
             container.appendChild(wrapper);
+
             updateControls();
         }
 
-        window.changeSlide = function(direction) {
+        function updateControls() {
+            document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+            
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+        }
+
+        function changeSlide(direction) {
             const newIndex = currentSlide + direction;
             if (newIndex >= 0 && newIndex < slides.length) {
                 currentSlide = newIndex;
@@ -196,15 +429,31 @@
             }
         }
 
-        function updateControls() {
-            document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
-            const progress = ((currentSlide + 1) / slides.length) * 100;
-            document.getElementById('progress-bar').style.width = `${progress}%`;
-            document.getElementById('prev-btn').disabled = currentSlide === 0;
-            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+        // Logic Dark Mode Sederhana
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
         }
 
-        loadData();
+        // Cek Local Storage saat Load
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        renderSlide();
+
     </script>
 
     <audio id="bg-music" loop preload="auto">

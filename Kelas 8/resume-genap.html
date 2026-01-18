@@ -62,117 +62,134 @@
         Ubah Mode (Terang/Gelap)
     </button>
 
-    <script type="module">
-        import { db, collection, getDocs, query, where, orderBy } from '../firebase-config.js';
-
-        let slides = [];
-        let currentSlide = 0;
-
-        async function loadData() {
-            const container = document.getElementById('slide-container');
-            container.innerHTML = '<div class="flex h-full items-center justify-center">Loading Data...</div>';
-
-            // Kelas dan Semester
-            const q = query(
-                collection(db, "materials"), 
-                where("kelas", "==", "8"), 
-                where("semester", "==", "genap"),
-                orderBy("timestamp", "asc")
-            );
-
-            try {
-                const querySnapshot = await getDocs(q);
-                slides = [];
-                querySnapshot.forEach((doc) => {
-                    slides.push(doc.data());
-                });
-
-                if (slides.length === 0) {
-                    container.innerHTML = '<div class="flex h-full items-center justify-center text-center p-10">Belum ada materi yang diinput oleh Admin.<br>Silakan cek kembali nanti.</div>';
-                } else {
-                    renderSlide();
-                }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                container.innerHTML = '<div class="text-red-500 text-center mt-10">Gagal memuat data. Pastikan internet lancar.</div>';
+    <script>
+        const slides = [
+            {
+                type: "intro", title: "Bahasa Inggris Kelas 8", subtitle: "Semester Genap",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5h7.5"/><path d="M12 18.5h7.5"/><path d="m5 12 7-7 7 7"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>`,
+                content: ["Offers & Opinions", "Narrative Text & Past Tense", "Advice (Should) & Agreement", "Recount Text & Past Continuous", "Quantifiers & Conversations"]
+            },
+            {
+                type: "content", title: "1. Offering Help & Opinions",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`,
+                explanation: "Menawarkan bantuan, menerima/menolak, dan memberi pendapat.",
+                rules: [
+                    { label: "OFFERING", text: "Would you like some help? / Can I help you?" },
+                    { label: "ACCEPT/DECLINE", text: "Yes, please. / No, thanks. I can do it." },
+                    { label: "OPINION", text: "I think... / In my opinion... (Giving/Refusing opinion)" }
+                ]
+            },
+            {
+                type: "content", title: "2. Narrative Text & Past Tense",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+                explanation: "Cerita fiksi (Fable/Legend) menggunakan Simple Past Tense.",
+                rules: [
+                    { label: "SIMPLE PAST", text: "S + V2 (Regular -ed / Irregular)." },
+                    { label: "NARRATIVE", text: "Orientation -> Complication -> Resolution." },
+                    { label: "EXAMPLE", text: "Cinderella, Mouse Deer, Sangkuriang." }
+                ]
+            },
+            {
+                type: "content", title: "3. Advice, Agreement & Conversation",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+                explanation: "Memberi saran, menyetujui, dan memulai percakapan.",
+                rules: [
+                    { label: "ADVICE (SHOULD)", text: "You should study harder. / You shouldn't be lazy." },
+                    { label: "AGREEMENT", text: "I agree with you. / That's right." },
+                    { label: "STARTING", text: "Excuse me... / Hi, how are you?" }
+                ]
+            },
+            {
+                type: "content", title: "4. Past Continuous Tense",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+                explanation: "Kejadian yang SEDANG berlangsung di masa LAMPAU.",
+                rules: [
+                    { label: "RUMUS", text: "S + Was/Were + Verb-ing." },
+                    { label: "CONTOH", text: "I was sleeping when you called." },
+                    { label: "CONNECTORS", text: "When (Simple Past) / While (Past Continuous)." }
+                ]
+            },
+            {
+                type: "content", title: "5. Recount Text (Review)",
+                iconColor: "text-brand-light",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+                explanation: "Penguatan materi Recount Text tentang pengalaman pribadi.",
+                rules: [
+                    { label: "FOCUS", text: "Chronological order (First, Then, Finally)." },
+                    { label: "CONTENT", text: "Personal experience (Holiday, Accident, Activity)." }
+                ]
+            },
+            {
+                type: "content", title: "6. Quantifiers & Info",
+                iconColor: "text-brand-dark",
+                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+                explanation: "Menyatakan jumlah benda dan meminta informasi.",
+                rules: [
+                    { label: "COUNTABLE", text: "Many, A few, Several (Bisa dihitung)." },
+                    { label: "UNCOUNTABLE", text: "Much, A little, Some (Tidak bisa dihitung)." },
+                    { label: "INFO", text: "Could you tell me...? / Do you know...?" }
+                ]
             }
-        }
+        ];
 
+        let currentSlide = 0;
         function renderSlide() {
             const container = document.getElementById('slide-container');
             const data = slides[currentSlide];
-            
             container.innerHTML = '';
             
             const wrapper = document.createElement('div');
             wrapper.className = 'flex flex-col h-full fade-in';
             
+            // Header
             const header = document.createElement('div');
             header.className = 'flex items-center gap-4 mb-6 border-b dark:border-slate-700 pb-4 shrink-0';
-            
-            const iconSvg = data.iconSvg || `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>`;
-            
             const iconDiv = document.createElement('div');
-            iconDiv.className = `p-3 rounded-full bg-brand-light/10 dark:bg-slate-700 text-brand-light`;
-            iconDiv.innerHTML = iconSvg;
-            
+            iconDiv.className = `p-3 bg-brand-light/10 dark:bg-slate-700 rounded-full ${data.iconColor}`;
+            iconDiv.innerHTML = data.iconSvg;
             const titleDiv = document.createElement('div');
             titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">${data.title}</h2>`;
-            
-            header.appendChild(iconDiv);
-            header.appendChild(titleDiv);
-            wrapper.appendChild(header);
+            if (data.subtitle) titleDiv.innerHTML += `<p class="text-gray-500 dark:text-gray-400">${data.subtitle}</p>`;
+            header.appendChild(iconDiv); header.appendChild(titleDiv); wrapper.appendChild(header);
 
+            // Body
             const bodyDiv = document.createElement('div');
             bodyDiv.className = 'flex-1 space-y-4';
 
-            if (data.type === 'intro' && data.content) {
-                if (Array.isArray(data.content)) {
-                    data.content.forEach(text => {
-                        bodyDiv.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-4 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-lg text-gray-700 dark:text-gray-200 font-medium">${text}</p></div>`;
-                    });
-                }
-            } 
-            else if (data.type === 'content') {
-                if (data.explanation) {
-                    bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4"><p class="text-gray-700 dark:text-yellow-100 italic">${data.explanation}</p></div>`;
-                }
-                if (data.rules && Array.isArray(data.rules)) {
-                    data.rules.forEach(rule => {
-                        bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row sm:items-center bg-gray-50 dark:bg-slate-700 p-3 rounded gap-2 sm:gap-4"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] uppercase text-sm tracking-wide">${rule.label}</span><span class="text-gray-700 dark:text-gray-200">${rule.text}</span></div>`;
-                    });
-                }
-                if (data.example) {
-                    let exContent = "";
-                    if (data.example.q) exContent = `<p class="font-mono text-lg mb-1">${data.example.q}</p><p class="text-green-400 text-sm">➜ ${data.example.a}</p>`;
-                    else if (data.example.topic) exContent = `<p>${data.example.topic}</p>`;
-                    
-                    bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg shadow-inner"><p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>${exContent}</div>`;
-                }
+            if(data.content) {
+                const list = document.createElement('div'); list.className = 'space-y-3 mt-4';
+                data.content.forEach(text => {
+                    list.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-3 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-gray-700 dark:text-gray-200">${text}</p></div>`;
+                });
+                bodyDiv.appendChild(list);
+            }
+            if(data.explanation) bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4 text-gray-700 dark:text-yellow-100 italic">${data.explanation}</div>`;
+            if(data.rules) {
+                data.rules.forEach(r => bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row gap-2 sm:gap-4 bg-gray-50 dark:bg-slate-700 p-3 rounded"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] text-sm uppercase">${r.label}</span><span class="text-gray-700 dark:text-gray-200">${r.text}</span></div>`);
+            }
+            if(data.example) {
+                bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg"><p class="text-xs text-gray-400 font-bold mb-2">CONTOH:</p><p class="mb-1">${data.example.q || data.example.topic}</p>${data.example.a ? `<p class="text-brand-light font-bold">➜ ${data.example.a}</p>` : ''}</div>`;
             }
 
-            wrapper.appendChild(bodyDiv);
-            container.appendChild(wrapper);
+            wrapper.appendChild(bodyDiv); container.appendChild(wrapper);
             updateControls();
         }
 
-        window.changeSlide = function(direction) {
-            const newIndex = currentSlide + direction;
-            if (newIndex >= 0 && newIndex < slides.length) {
-                currentSlide = newIndex;
-                renderSlide();
-            }
-        }
-
         function updateControls() {
-            document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
-            const progress = ((currentSlide + 1) / slides.length) * 100;
-            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${slides.length}`;
+            document.getElementById('progress-bar').style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
             document.getElementById('prev-btn').disabled = currentSlide === 0;
             document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
         }
-
-        loadData();
+        function changeSlide(n) { if (currentSlide + n >= 0 && currentSlide + n < slides.length) { currentSlide += n; renderSlide(); } }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+        renderSlide();
     </script>
 
     <audio id="bg-music" loop preload="auto">
