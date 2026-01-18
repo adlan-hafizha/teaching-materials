@@ -62,138 +62,117 @@
         Ubah Mode (Terang/Gelap)
     </button>
 
-    <script>
-        const slides = [
-            {
-                type: "intro", title: "Bahasa Inggris Kelas 11", subtitle: "Semester Genap",
-                iconColor: "text-brand-dark",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5h7.5"/><path d="M12 18.5h7.5"/><path d="m5 12 7-7 7 7"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>`,
-                content: ["Agreement & Disagreement", "Narrative & Spoof Text", "Love, Sadness, Anger", "Hortatory Exposition", "Embarrassment & Annoyance"]
-            },
-            {
-                type: "content", title: "1. Agreement & Disagreement",
-                iconColor: "text-brand-light",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
-                explanation: "Menyatakan persetujuan atau ketidaksetujuan terhadap opini.",
-                rules: [
-                    { label: "AGREE", text: "I agree with you, That's exactly what I think, You're right." },
-                    { label: "DISAGREE", text: "I don't think so, I disagree with you, That's not entirely true." }
-                ]
-            },
-            {
-                type: "content", title: "2. Narrative Text (Lanjutan)",
-                iconColor: "text-brand-dark",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
-                explanation: "Pendalaman teks naratif dengan struktur yang lebih kompleks.",
-                rules: [
-                    { label: "FOCUS", text: "Character building, moral value, plot twist." }
-                ],
-                example: { topic: "Romeo and Juliet, The Legend of Surabaya." }
-            },
-            {
-                type: "content", title: "3. Spoof Text",
-                iconColor: "text-brand-light",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
-                explanation: "Cerita lucu yang memiliki akhiran tak terduga (Twist).",
-                rules: [
-                    { label: "STRUCTURE", text: "Orientation -> Events -> Twist (Ending lucu)." },
-                    { label: "PURPOSE", text: "To entertain readers with a funny story." }
-                ]
-            },
-            {
-                type: "content", title: "4. Love & Sadness",
-                iconColor: "text-brand-dark",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
-                explanation: "Ekspresi cinta dan kesedihan.",
-                rules: [
-                    { label: "LOVE", text: "I adore you, You mean the world to me, I fall for you." },
-                    { label: "SADNESS", text: "I'm feeling down, It breaks my heart, I'm upset." }
-                ]
-            },
-            {
-                type: "content", title: "5. Anger & Annoyance",
-                iconColor: "text-brand-light",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
-                explanation: "Ekspresi kemarahan dan kejengkelan.",
-                rules: [
-                    { label: "ANGER", text: "I'm very angry!, Don't bother me!, You make me mad!" },
-                    { label: "ANNOYANCE", text: "What a nuisance!, It really bugs me, I'm fed up with it." }
-                ]
-            },
-            {
-                type: "content", title: "6. Embarrassment",
-                iconColor: "text-brand-dark",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
-                explanation: "Ekspresi rasa malu.",
-                rules: [
-                    { label: "EXPRESSION", text: "I'm so embarrassed, It was so humiliating, I wish the ground would swallow me up." }
-                ]
-            },
-            {
-                type: "content", title: "7. Hortatory Exposition",
-                iconColor: "text-brand-light",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
-                explanation: "Teks yang bertujuan membujuk pembaca untuk melakukan atau tidak melakukan sesuatu.",
-                rules: [
-                    { label: "STRUCTURE", text: "Thesis -> Arguments -> Recommendation (Saran)" },
-                    { label: "VS ANALYTICAL", text: "Hortatory ends with 'Recommendation', Analytical ends with 'Conclusion/Reiteration'." }
-                ]
-            }
-        ];
+    <script type="module">
+        import { db, collection, getDocs, query, where, orderBy } from '../firebase-config.js';
 
+        let slides = [];
         let currentSlide = 0;
+
+        async function loadData() {
+            const container = document.getElementById('slide-container');
+            container.innerHTML = '<div class="flex h-full items-center justify-center">Loading Data...</div>';
+
+            // Kelas dan Semester
+            const q = query(
+                collection(db, "materials"), 
+                where("kelas", "==", "11"), 
+                where("semester", "==", "genap"),
+                orderBy("timestamp", "asc")
+            );
+
+            try {
+                const querySnapshot = await getDocs(q);
+                slides = [];
+                querySnapshot.forEach((doc) => {
+                    slides.push(doc.data());
+                });
+
+                if (slides.length === 0) {
+                    container.innerHTML = '<div class="flex h-full items-center justify-center text-center p-10">Belum ada materi yang diinput oleh Admin.<br>Silakan cek kembali nanti.</div>';
+                } else {
+                    renderSlide();
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                container.innerHTML = '<div class="text-red-500 text-center mt-10">Gagal memuat data. Pastikan internet lancar.</div>';
+            }
+        }
+
         function renderSlide() {
             const container = document.getElementById('slide-container');
             const data = slides[currentSlide];
+            
             container.innerHTML = '';
             
             const wrapper = document.createElement('div');
             wrapper.className = 'flex flex-col h-full fade-in';
             
-            // Header
             const header = document.createElement('div');
             header.className = 'flex items-center gap-4 mb-6 border-b dark:border-slate-700 pb-4 shrink-0';
+            
+            const iconSvg = data.iconSvg || `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>`;
+            
             const iconDiv = document.createElement('div');
-            iconDiv.className = `p-3 bg-brand-light/10 dark:bg-slate-700 rounded-full ${data.iconColor}`;
-            iconDiv.innerHTML = data.iconSvg;
+            iconDiv.className = `p-3 rounded-full bg-brand-light/10 dark:bg-slate-700 text-brand-light`;
+            iconDiv.innerHTML = iconSvg;
+            
             const titleDiv = document.createElement('div');
             titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">${data.title}</h2>`;
-            if (data.subtitle) titleDiv.innerHTML += `<p class="text-gray-500 dark:text-gray-400">${data.subtitle}</p>`;
-            header.appendChild(iconDiv); header.appendChild(titleDiv); wrapper.appendChild(header);
+            
+            header.appendChild(iconDiv);
+            header.appendChild(titleDiv);
+            wrapper.appendChild(header);
 
-            // Body
             const bodyDiv = document.createElement('div');
             bodyDiv.className = 'flex-1 space-y-4';
 
-            if(data.content) {
-                const list = document.createElement('div'); list.className = 'space-y-3 mt-4';
-                data.content.forEach(text => {
-                    list.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-3 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-gray-700 dark:text-gray-200">${text}</p></div>`;
-                });
-                bodyDiv.appendChild(list);
-            }
-            if(data.explanation) bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4 text-gray-700 dark:text-yellow-100 italic">${data.explanation}</div>`;
-            if(data.rules) {
-                data.rules.forEach(r => bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row gap-2 sm:gap-4 bg-gray-50 dark:bg-slate-700 p-3 rounded"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] text-sm uppercase">${r.label}</span><span class="text-gray-700 dark:text-gray-200">${r.text}</span></div>`);
-            }
-            if(data.example) {
-                bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg"><p class="text-xs text-gray-400 font-bold mb-2">CONTOH:</p><p class="mb-1">${data.example.q || data.example.topic}</p>${data.example.a ? `<p class="text-brand-light font-bold">➜ ${data.example.a}</p>` : ''}</div>`;
+            if (data.type === 'intro' && data.content) {
+                if (Array.isArray(data.content)) {
+                    data.content.forEach(text => {
+                        bodyDiv.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-4 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-lg text-gray-700 dark:text-gray-200 font-medium">${text}</p></div>`;
+                    });
+                }
+            } 
+            else if (data.type === 'content') {
+                if (data.explanation) {
+                    bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4"><p class="text-gray-700 dark:text-yellow-100 italic">${data.explanation}</p></div>`;
+                }
+                if (data.rules && Array.isArray(data.rules)) {
+                    data.rules.forEach(rule => {
+                        bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row sm:items-center bg-gray-50 dark:bg-slate-700 p-3 rounded gap-2 sm:gap-4"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] uppercase text-sm tracking-wide">${rule.label}</span><span class="text-gray-700 dark:text-gray-200">${rule.text}</span></div>`;
+                    });
+                }
+                if (data.example) {
+                    let exContent = "";
+                    if (data.example.q) exContent = `<p class="font-mono text-lg mb-1">${data.example.q}</p><p class="text-green-400 text-sm">➜ ${data.example.a}</p>`;
+                    else if (data.example.topic) exContent = `<p>${data.example.topic}</p>`;
+                    
+                    bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg shadow-inner"><p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>${exContent}</div>`;
+                }
             }
 
-            wrapper.appendChild(bodyDiv); container.appendChild(wrapper);
+            wrapper.appendChild(bodyDiv);
+            container.appendChild(wrapper);
             updateControls();
         }
 
+        window.changeSlide = function(direction) {
+            const newIndex = currentSlide + direction;
+            if (newIndex >= 0 && newIndex < slides.length) {
+                currentSlide = newIndex;
+                renderSlide();
+            }
+        }
+
         function updateControls() {
-            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${slides.length}`;
-            document.getElementById('progress-bar').style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+            document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
             document.getElementById('prev-btn').disabled = currentSlide === 0;
             document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
         }
-        function changeSlide(n) { if (currentSlide + n >= 0 && currentSlide + n < slides.length) { currentSlide += n; renderSlide(); } }
-        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
-        renderSlide();
+
+        loadData();
     </script>
 
     <audio id="bg-music" loop preload="auto">

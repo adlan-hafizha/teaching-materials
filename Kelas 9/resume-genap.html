@@ -90,152 +90,41 @@
         </button>
     </div>
 
-    <script>
-        const slides = [
-            {
-                type: "intro",
-                title: "Bahasa Inggris Kelas 9",
-                subtitle: "Semester Genap",
-                iconColor: "text-brand-light",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
-                content: [
-                    "Grammar: Present & Past Perfect Tense",
-                    "Expression: Giving Interesting News",
-                    "Text: Narrative & Report Text",
-                    "Modals: May, Might, Can, Could"
-                ]
-            },
-            {
-                type: "content",
-                title: "1. Present Perfect Tense",
-                iconColor: "text-green-500",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-                explanation: "Menyatakan tindakan yang sudah terjadi namun waktunya tidak spesifik, atau hasilnya masih terasa sampai sekarang.",
-                rules: [
-                    { label: "RUMUS", text: "S + Have/Has + Verb 3" },
-                    { label: "TIME SIGNAL", text: "Already, Just, Yet, Ever, Never, Since, For" }
-                ],
-                example: {
-                    q: "I _____ my homework just now.",
-                    a: "I HAVE FINISHED my homework."
-                }
-            },
-            {
-                type: "content",
-                title: "2. Giving Interesting News",
-                iconColor: "text-yellow-500",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
-                explanation: "Ekspresi untuk memberikan kabar mengejutkan atau menarik kepada orang lain.",
-                rules: [
-                    { label: "GIVING NEWS", text: "'Guess what!', 'I've got good news!', 'You won't believe this!'" },
-                    { label: "RESPONDING", text: "'Really?', 'Are you serious?', 'That's fantastic!'" }
-                ],
-                example: {
-                    q: "Dialog Singkat:",
-                    a: "A: Guess what? I won the competition! <br> B: Really? Congratulations!"
-                }
-            },
-            {
-                type: "content",
-                title: "3. Narrative Text",
-                iconColor: "text-purple-500",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
-                explanation: "Teks imajinatif/cerita untuk menghibur pembaca (To amuse/entertain).",
-                rules: [
-                    { label: "GENERIC STRUCTURE", text: "1. Orientation (Pengenalan), 2. Complication (Masalah), 3. Resolution (Penyelesaian)" },
-                    { label: "CIRI BAHASA", text: "Past Tense (V2), Time Connectives (Once upon a time, One day)" }
-                ],
-                example: {
-                    topic: "Contoh: Sangkuriang, Cinderella, The Rabbit and The Turtle."
-                }
-            },
-            {
-                type: "content",
-                title: "4. Past Perfect Tense",
-                iconColor: "text-red-500",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m16 6-4-4-4 4"/><path d="M16 18l-4 4-4-4"/></svg>`,
-                explanation: "Kejadian yang SUDAH SELESAI di masa lampau SEBELUM kejadian lain terjadi.",
-                rules: [
-                    { label: "RUMUS", text: "S + HAD + Verb 3" },
-                    { label: "KONTEKS", text: "Biasanya digabung dengan Past Tense (Before/After/When)" }
-                ],
-                example: {
-                    q: "When I arrived at the station, the train _____.",
-                    a: "The train HAD LEFT. (Kereta pergi DULUAN, baru saya datang)"
-                }
-            },
-            {
-                type: "content",
-                title: "5. Report Text",
-                iconColor: "text-blue-500",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
-                explanation: "Menjelaskan sesuatu secara ilmiah/fakta umum (General Truth). Berbeda dengan Descriptive yang spesifik.",
-                rules: [
-                    { label: "CIRI UTAMA", text: "Menggunakan Simple Present Tense." },
-                    { label: "OBJEK", text: "Bersifat umum (General Nouns). Contoh: 'Whales', bukan 'My Whale'." }
-                ],
-                example: {
-                    topic: "Judul: 'Lightning', 'Komodo Dragons', 'Laptop'."
-                }
-            },
-            {
-                type: "content",
-                title: "6. Modals: May & Might",
-                iconColor: "text-indigo-500",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-                explanation: "Digunakan untuk menyatakan kemungkinan (Probability) atau izin (Permission).",
-                rules: [
-                    { label: "MAY", text: "Kemungkinan besar (50%+) / Izin Formal. (e.g., 'May I go?')" },
-                    { label: "MIGHT", text: "Kemungkinan kecil (<50%) / Bentuk lampau dari May." }
-                ],
-                example: {
-                    q: "Look at the clouds. It _____ rain soon.",
-                    a: "MAY (Kemungkinannya besar karena mendung)."
-                }
-            },
-            {
-                type: "content",
-                title: "7. Modals: Can & Could",
-                iconColor: "text-pink-500",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>`,
-                explanation: "Digunakan untuk menyatakan kemampuan (Ability) atau permintaan (Request).",
-                rules: [
-                    { label: "CAN", text: "Kemampuan di masa SEKARANG (Present)." },
-                    { label: "COULD", text: "Kemampuan di masa LAMPAU (Past) / Permintaan Sopan." }
-                ],
-                example: {
-                    ex1: "I CAN swim. (Sekarang bisa)",
-                    ex2: "I COULD run fast when I was young. (Dulu bisa)"
-                }
-            },
-            {
-                type: "summary",
-                title: "Latihan Soal Singkat",
-                iconColor: "text-brand-dark",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>`,
-                content: [
-                    "Coba jawab pertanyaan berikut dalam hati:",
-                    "1. Ubah ke Present Perfect: 'I eat lunch'.",
-                    "2. Apa tujuan Narrative Text?",
-                    "3. Pilih yang lebih sopan: 'Can I help?' atau 'Could I help?'",
-                    "Tekan 'Selanjutnya' untuk melihat kunci jawaban."
-                ]
-            },
-            {
-                type: "content",
-                title: "Kunci Jawaban",
-                iconColor: "text-teal-600",
-                iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
-                explanation: "Cocokkan dengan jawabanmu.",
-                example: {
-                    ex1: "I HAVE EATEN lunch.",
-                    ex2: "To amuse/entertain the readers (Menghibur).",
-                    ex3: "'COULD I help?' (Lebih formal/sopan)."
-                }
-            }
-        ];
+    <script type="module">
+        import { db, collection, getDocs, query, where, orderBy } from '../firebase-config.js';
 
+        let slides = [];
         let currentSlide = 0;
+
+        async function loadData() {
+            const container = document.getElementById('slide-container');
+            container.innerHTML = '<div class="flex h-full items-center justify-center">Loading Data...</div>';
+
+            // Kelas dan Semester
+            const q = query(
+                collection(db, "materials"), 
+                where("kelas", "==", "9"), 
+                where("semester", "==", "genap"),
+                orderBy("timestamp", "asc")
+            );
+
+            try {
+                const querySnapshot = await getDocs(q);
+                slides = [];
+                querySnapshot.forEach((doc) => {
+                    slides.push(doc.data());
+                });
+
+                if (slides.length === 0) {
+                    container.innerHTML = '<div class="flex h-full items-center justify-center text-center p-10">Belum ada materi yang diinput oleh Admin.<br>Silakan cek kembali nanti.</div>';
+                } else {
+                    renderSlide();
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                container.innerHTML = '<div class="text-red-500 text-center mt-10">Gagal memuat data. Pastikan internet lancar.</div>';
+            }
+        }
 
         function renderSlide() {
             const container = document.getElementById('slide-container');
@@ -249,20 +138,15 @@
             const header = document.createElement('div');
             header.className = 'flex items-center gap-4 mb-6 border-b dark:border-slate-700 pb-4 shrink-0';
             
+            const iconSvg = data.iconSvg || `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>`;
+            
             const iconDiv = document.createElement('div');
-            if (currentSlide === 0) {
-                 iconDiv.className = `p-3 rounded-full bg-brand-light/10 dark:bg-slate-700 ${data.iconColor}`;
-            } else {
-                 iconDiv.className = `p-3 bg-blue-50 dark:bg-slate-700 rounded-full ${data.iconColor}`;
-            }
-            iconDiv.innerHTML = data.iconSvg;
+            iconDiv.className = `p-3 rounded-full bg-brand-light/10 dark:bg-slate-700 text-brand-light`;
+            iconDiv.innerHTML = iconSvg;
             
             const titleDiv = document.createElement('div');
             titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">${data.title}</h2>`;
-            if (data.subtitle) {
-                titleDiv.innerHTML += `<p class="text-gray-500 dark:text-gray-400">${data.subtitle}</p>`;
-            }
-
+            
             header.appendChild(iconDiv);
             header.appendChild(titleDiv);
             wrapper.appendChild(header);
@@ -270,73 +154,37 @@
             const bodyDiv = document.createElement('div');
             bodyDiv.className = 'flex-1 space-y-4';
 
-            if (data.type === 'intro' || data.type === 'summary') {
-                const list = document.createElement('div');
-                list.className = 'space-y-4 mt-4';
-                data.content.forEach(text => {
-                    const item = document.createElement('div');
-                    item.className = 'flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-4 rounded-lg border border-transparent dark:border-slate-600';
-                    item.innerHTML = `<div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-lg text-gray-700 dark:text-gray-200 font-medium">${text}</p>`;
-                    list.appendChild(item);
-                });
-                bodyDiv.appendChild(list);
+            if (data.type === 'intro' && data.content) {
+                if (Array.isArray(data.content)) {
+                    data.content.forEach(text => {
+                        bodyDiv.innerHTML += `<div class="flex items-center gap-3 bg-brand-light/10 dark:bg-slate-700/50 p-4 rounded-lg"><div class="w-2 h-2 rounded-full bg-brand-light shrink-0"></div><p class="text-lg text-gray-700 dark:text-gray-200 font-medium">${text}</p></div>`;
+                    });
+                }
             } 
             else if (data.type === 'content') {
                 if (data.explanation) {
-                    const exp = document.createElement('div');
-                    exp.className = 'bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4';
-                    exp.innerHTML = `<p class="text-gray-700 dark:text-yellow-100 italic">${data.explanation}</p>`;
-                    bodyDiv.appendChild(exp);
+                    bodyDiv.innerHTML += `<div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mb-4"><p class="text-gray-700 dark:text-yellow-100 italic">${data.explanation}</p></div>`;
                 }
-
-                if (data.rules) {
-                    const rulesGrid = document.createElement('div');
-                    rulesGrid.className = 'grid gap-3';
+                if (data.rules && Array.isArray(data.rules)) {
                     data.rules.forEach(rule => {
-                        const ruleDiv = document.createElement('div');
-                        ruleDiv.className = 'flex flex-col sm:flex-row sm:items-center bg-gray-50 dark:bg-slate-700 p-3 rounded hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors gap-2 sm:gap-4';
-                        ruleDiv.innerHTML = `<span class="font-bold text-blue-700 dark:text-blue-300 min-w-[120px] uppercase text-sm tracking-wide mb-1 sm:mb-0">${rule.label}</span><span class="text-gray-700 dark:text-gray-200">${rule.text}</span>`;
-                        rulesGrid.appendChild(ruleDiv);
+                        bodyDiv.innerHTML += `<div class="flex flex-col sm:flex-row sm:items-center bg-gray-50 dark:bg-slate-700 p-3 rounded gap-2 sm:gap-4"><span class="font-bold text-brand-dark dark:text-brand-light min-w-[100px] uppercase text-sm tracking-wide">${rule.label}</span><span class="text-gray-700 dark:text-gray-200">${rule.text}</span></div>`;
                     });
-                    bodyDiv.appendChild(rulesGrid);
                 }
-
                 if (data.example) {
-                    const exBox = document.createElement('div');
-                    exBox.className = 'mt-6 bg-slate-800 dark:bg-black/40 text-white p-4 rounded-lg shadow-inner';
-                    exBox.innerHTML = `<p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>`;
+                    let exContent = "";
+                    if (data.example.q) exContent = `<p class="font-mono text-lg mb-1">${data.example.q}</p><p class="text-green-400 text-sm">➜ ${data.example.a}</p>`;
+                    else if (data.example.topic) exContent = `<p>${data.example.topic}</p>`;
                     
-                    let exContent = '';
-                    if (data.example.q) {
-                        exContent = `<p class="font-mono text-lg mb-1">${data.example.q}</p><p class="text-green-400 text-sm">➜ ${data.example.a}</p>`;
-                    } else if (data.example.topic) {
-                        exContent = `<p>${data.example.topic}</p>`;
-                    } else if (data.example.ex1) {
-                         exContent = `<div class="space-y-2 italic"><p>1. ${data.example.ex1}</p><p>2. ${data.example.ex2}</p></div>`;
-                         if(data.example.ex3) exContent += `<p>3. ${data.example.ex3}</p>`;
-                    }
-                    exBox.innerHTML += exContent;
-                    bodyDiv.appendChild(exBox);
+                    bodyDiv.innerHTML += `<div class="mt-6 bg-slate-800 dark:bg-black/50 text-white p-4 rounded-lg shadow-inner"><p class="text-xs text-slate-400 uppercase tracking-widest mb-2 font-bold">Contoh / Example</p>${exContent}</div>`;
                 }
             }
 
             wrapper.appendChild(bodyDiv);
             container.appendChild(wrapper);
-
             updateControls();
         }
 
-        function updateControls() {
-            document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
-            
-            const progress = ((currentSlide + 1) / slides.length) * 100;
-            document.getElementById('progress-bar').style.width = `${progress}%`;
-
-            document.getElementById('prev-btn').disabled = currentSlide === 0;
-            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
-        }
-
-        function changeSlide(direction) {
+        window.changeSlide = function(direction) {
             const newIndex = currentSlide + direction;
             if (newIndex >= 0 && newIndex < slides.length) {
                 currentSlide = newIndex;
@@ -344,29 +192,15 @@
             }
         }
 
-        function toggleDarkMode() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
+        function updateControls() {
+            document.getElementById('slide-counter').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
         }
 
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') changeSlide(1);
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-        });
-
-        renderSlide();
-
+        loadData();
     </script>
 
     <audio id="bg-music" loop preload="auto">
